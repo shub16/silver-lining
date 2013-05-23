@@ -1,0 +1,1 @@
+alert ( msg: "PSNG_TCP_PORTSCAN"; sid: 1; gid: 122; rev: 1; metadata: rule-type preproc ; )

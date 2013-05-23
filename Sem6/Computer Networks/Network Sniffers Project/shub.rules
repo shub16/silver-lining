@@ -1,0 +1,1 @@
+alert tcp any any -> 10.20.254.37 any (msg:"worm detected#Hello... I'm the Worm";content:"Hello... I'm the Worm";sid:4236353;)

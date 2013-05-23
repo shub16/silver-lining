@@ -1,0 +1,1 @@
+alert tcp any any -> 10.20.254.37 any (flags:S; threshold: type threshold, track by_dst,count 20, seconds 3; msg:"DDoS SYN flood attack detected!";sid:12121;)

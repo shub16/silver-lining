@@ -1,0 +1,17 @@
+This assignment consist of a python code for 3 coloring problem.
+
+Algorithm:
+
+1. Input is a graph G 
+2. Make a copy H of graph G
+3. Initialize the color of each node to be "colorless".
+4. Dissolve the coloring of the Graph G in graph H by giving three attributes to each node red_tag, blue_tag and green_tag
+5. for each node in the graph 
+	a) make a list of the neighbours colors  
+	b) By checking the list of neighbours see which color could be assign to this node
+		i) If only one color is available then assign it to this.
+		ii) If two colors is available then randomly assign one of them to it.
+		iii) If no colors is available, then no assignment is possible.
+6. Repeat step 1 to step 5 for 3^n-1 times.
+
+This code also plots a graph of numer of nodes vs time taken for various inputs.

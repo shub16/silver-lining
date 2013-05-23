@@ -1,0 +1,1 @@
+alert icmp any any -> 10.20.254.37 any (itype:8; threshold: type threshold, track by_src,count 2, seconds 10; msg:"Ping flood attack detected!";sid:100121;)
