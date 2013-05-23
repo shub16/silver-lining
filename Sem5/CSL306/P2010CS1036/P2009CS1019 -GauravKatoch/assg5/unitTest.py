@@ -1,0 +1,169 @@
+
+from AnyGUI.xGUI import *
+import unittest
+xGUI(Environment = "gtk")
+
+#Functions bind to button events
+def SubmitButtonClick(event=None):    
+    newpassword1 = newpassText1.getText();
+    newpassword2 = newpassText2.getText();
+    response = validatePassword(newpassword1,newpassword2) 
+    if(response == 0):
+        storePass = newpassword1;
+        oldpassText.setText(rentSecure(storePass,secure));
+        consoleText.setText("Password has been changed\n");
+    elif(response == -1):        
+        consoleText.setText("Unknown error\n");
+    elif(response == -2):        
+        consoleText.setText("Error: Both the new password are not same\n")
+    elif(response == -3):        
+        consoleText.setText("Error: Password is less than six letter\n")
+    elif(response == -4):
+        consoleText.setText("Error: Password is not alphanumeric\n")
+    return
+
+
+storePass = "oldpassword"
+secure = True
+
+def rentSecure(password,isSecure):
+    if(isSecure):
+        for i in range(len(password)):
+           password = password.replace(password[i],"*")
+    print isSecure,password
+    return password
+
+def ShowButtonClick(event=None):
+    global storePass,secure
+    if(secure == False):
+        secure = True        
+        storePass = oldpassText.getText()
+    else:
+        secure = False
+    oldpassText.setText(rentSecure(storePass,secure))
+    #oldpassText.setText(storePass)
+    return True
+
+def validatePassword(newpassword1,newpassword2):
+    '''error_code
+        0   succes
+        -1  no valid response
+        -2  no mismatch
+        -3  str length is less than 6
+        -4  not alpha numeric
+        '''
+    try:
+        v1 = newpassword1.isalnum()
+        v2 = newpassword2.isalnum()
+    except:
+        raise TypeError
+
+    error_code = -1
+    if(newpassword2!=newpassword1):
+        error_code = -2
+    if(len(newpassword1)<6):
+        error_code = -3
+
+    if(error_code == -1):
+        valid = False
+        for i in range(len(newpassword1)):
+            if(newpassword1[i].isalpha()==False):
+                if(newpassword1[i].isdigit()==True):
+                    valid = True
+        if(valid):
+            error_code = 0  
+        else:          
+            error_code = -4
+    return error_code
+
+
+
+class TestValidateFunctions(unittest.TestCase):
+
+    #def setUp(self):
+        #self.error_code = 0
+
+    def test_validateInputType(self):
+        password1 = 1
+        password2 = "password2"
+        #self.assertEqual(validatePassword(password1,password2), -2)
+        self.assertRaises(TypeError, validatePassword)
+
+    def test_validateMismatch(self):
+        password1 = "password1"
+        password2 = "password2"
+        self.assertEqual(validatePassword(password1,password2), -2)
+
+    def test_validateLength(self):        
+        password1 = "pass1"
+        password2 = "pass1"
+        self.assertEqual(validatePassword(password1,password2), -3)
+
+    def test_validateAplha(self):
+        password1 = "password"
+        password2 = "password"
+        self.assertEqual(validatePassword(password1,password2), -4)
+
+    def test_validateSuccess(self):
+        password1 = "password1"
+        password2 = "password1"
+        self.assertEqual(validatePassword(password1,password2), 0)
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+    canvas = Canvas(1, 'gtkGUI -v1.0 | Gaurav Katoch' ,560,600)
+
+
+    label = LabelText("Username: ",20,40,120,30)
+    text_field = TextField("Username: ",150,40,300,25)
+    canvas.add(label)
+    canvas.add(text_field)
+    
+    oldpassText = LabelText("Current Password: ",20,100,120,30)
+    text_field = TextField(rentSecure(storePass,secure),150,100,300,25)
+    canvas.add(oldpassText)
+    canvas.add(text_field)
+
+    #oldpassword
+    showBtn = Button("show password",150,75,150,20)
+    showBtn.clickListener(ShowButtonClick)
+    canvas.add(showBtn);
+
+
+
+
+    label = LabelText("New Password: ",20,160,120,30)
+    newpassText1= TextField("New Password: ",150,160,300,25)
+    canvas.add(label)
+    canvas.add(newpassText1)
+
+    label = LabelText("Confirm Password: ",20,220,120,30)
+    newpassText2 = TextField("Confirm Password: ",150,220,300,25)
+    canvas.add(label)
+    canvas.add(newpassText2)
+
+    checkbox = CheckBox("WARNING: PLease don't try to register on this page.", 100,500,400,60)
+    canvas.add(checkbox)
+
+
+
+    submitBtn = Button("Register",130,400,120,30)
+    aboutBtn = Button("About",260,400,120,30)
+
+    #Creating Buttons
+    #submitBtn = Button("Submit",100,300,120,30)
+
+    #Callback methods on buttons click
+    submitBtn.clickListener(SubmitButtonClick)
+
+    #Adding buttons to canvas
+    canvas.add(submitBtn)
+    canvas.add(aboutBtn)
+
+    canvas.show()
+
+

@@ -1,0 +1,80 @@
+TkinterGUI version 1.0
+
+* Author : Madhu
+* Version : 3.0
+* Currently support eleven widgets and provides flexibility to user for deciding the layout
+
+==API Summary ==
+
+WindowLayout
+----------------
+* <constructor> WindowLayout(parent)
+* <layout> createLayout(lstWidgets)
+
+WIDGETS
+------------------
+class TextLineWidget:
+	def __init__(parent)
+	def getValue()
+	def getWidget()
+
+class CreateButtonWidget:
+	def __init__(parent,name,function,*args)
+	def getWidget()
+
+class CheckBoxWidget:
+	def __init__(parent,name)
+	def getValue()
+	def getWidget()
+
+class RadioButtonsWidget:
+	def __init__(parent,labels)
+	def getValue()
+	def getWidget()
+
+class ListWidget:
+	def __init__(parent,values)
+	def getValue()
+	def getWidget()
+
+class CreateLabelWidget:
+	def __init__(parent,title)
+	def getWidget()
+
+class PasswordWidget:
+	def __init__(parent)
+	def getValue()
+	def getWidget()
+
+class SpinBoxWidget:
+	def __init__(parent,fromValue,toValue)
+	def getValue()
+	def getWidget()
+
+class TextBoxWidget:
+	def __init__(parent)
+	def getValue()
+	def getWidget()
+
+class SliderWidget:
+	def __init__(parent,fromValue,toValue)
+	def getValue()
+	def getWidget()
+
+class CalendarWidget:
+	def __init__(parent)
+	def mainframe()
+	def getValue()
+	def getWidget()
+	def fnCalendar()
+
+class tkCalendar:
+	def __init__ (master, arg_year, arg_month, arg_day, 
+	    arg_parent_updatable_var)
+	def fnCreateRightArrow(canv, x, y, strtagname)
+	def fnCreateLeftArrow(canv, x, y, strtagname)
+	def fnClick(event)
+	def fnFillCalendar()
+	def fnClickNumber(event)
+	def fnOnMouseOver(event)
+	def fnOnMouseOut(event)

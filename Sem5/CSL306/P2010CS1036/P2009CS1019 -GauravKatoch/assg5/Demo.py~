@@ -1,0 +1,106 @@
+from fltk import *
+from AnyGUI.xGUI import *
+xGUI(Environment = "fltk")
+'''
+Package in AnyGUI
+-------------------
+from AnyGUI.fltkGUI import *    #FLTK GUI
+from AnyGUI.tkGUI import *      #Tkinter GUI
+from AnyGUI.wxGUI import *      #wxPython GUI
+from AnyGUI.gtkGUI import *     #GTK GUI
+from AnyGUI.qtGUI import *      #QtPy GUI
+
+Dynamic evironment change
+-------------------------
+Environment will in
+    wx    : wxPython            by Arink    2009cs1017
+    fltk  : Fast Light Toolkit  by Kamal    2009cs1011
+    gtk   : GTK Py              by Gaurav   2009cs1001
+    qt    : PyQT                by Prateek  2009cs1002
+    tk    : TKinter             by Pravesh  2009cs1001
+'''
+
+#Functions bind to button events
+def SubmitButtonClick(event):
+	report = " Your city is "+valuelist.getValue()+"\n"
+	if(checkbox1.getValue()):
+	    report = report + " you have read the code\n"
+	else:
+	    report = report + " you have not read the code\n"
+		
+	if(checkbox2.getValue()):
+       	    report = report + " you have read the documentation\n"
+	else:
+    	    report = report + " you have not read the documentation\n"
+      	report = report + " you are "+rb1.getValue()+"\n"
+    	report = report + " you need "+rb2.getValue()+"\n"
+
+	textarea.appendText("_______________________\n"+report+"\n\n")
+	return True 
+
+def AboutButtonClick(event):
+	textarea.setText("Created by pyfltkGUI -v1.0\nAuthor : Kamaldeep Singh\n\nhttp://10.1.0.140/trac/wiki/KamaldeepSinghThethi\n")
+	return True
+
+
+
+	#Constructor canvas
+canvas = Canvas(1, 'fltkGUI -v1.0 | Kamaldeep Singh' ,560,600)
+
+	#Dropdown valuelist
+#cities = ['New Delhi', 'Mumbai', 'Ropar', 'Lucknow', 'Chandigrah', 'Wasseypur', 'Jaipur' ]
+#valuelist = ValueList(cities,120,200,80,25,"<Select your city>")
+#canvas.add(valuelist)
+
+
+
+label = LabelText("Username: ",20,40,120,30)
+canvas.add(label)
+text_field = TextField("Username: ",150,40,300,25)
+canvas.add(text_field)
+
+
+label = LabelText("Old Password: ",20,100,120,30)
+canvas.add(label)
+text_field = TextField("Old Password: ",150,100,300,25)
+canvas.add(text_field)
+
+label = LabelText("New Password: ",20,160,120,30)
+canvas.add(label)
+text_field = TextField("New Password: ",150,160,300,25)
+canvas.add(text_field)
+
+label = LabelText("Confirm Password: ",20,220,120,30)
+canvas.add(label)
+text_field = TextField("Confirm Password: ",150,220,300,25)
+canvas.add(text_field)
+
+checkbox = CheckBox("WARNING: PLease don't try to register on this page.", 100,500,400,60)
+canvas.add(checkbox)
+
+
+	#radioGroup1
+rb1 = RadioGroup(50,100)
+rb1.addRadioButton("Male",100,280)
+rb1.addRadioButton("Female",200,280)
+rb1.setButtonTrue(0)
+canvas.add(rb1)
+
+
+	#TextArea
+#textarea = TextArea("\n Click submit button to see output here!!",250,10,250,200)
+#canvas.add(textarea)
+
+	#Creating Buttons
+submitBtn = Button("Register",130,400,120,30)
+aboutBtn = Button("About",260,400,120,30)
+
+	#Callback methods on buttons click
+#submitBtn.clickListener(SubmitButtonClick)
+#aboutBtn.clickListener(AboutButtonClick)
+
+	#Adding buttons to canvas
+canvas.add(aboutBtn)
+canvas.add(submitBtn)
+
+canvas.show()

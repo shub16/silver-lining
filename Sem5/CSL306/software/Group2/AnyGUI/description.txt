@@ -1,0 +1,22 @@
+Assignment 7 : Group 2
+
+Group members:
+Nitin Kalra - 2010CS1028
+Shubham Upadhyay - 2010CS1036
+Sanjeev Verma -  2010CS1035
+Anubhav Garg - 2010CS1008
+
+
+Instructions to run the demo application:
+
+1. Place all five files (tk_GUI.py, qt_GUI.py, gtk_GUI.py, wx_GUI.py, demo.py) in one folder.  
+
+2. Run the python file demo.py to see our demo application.
+
+3. Import the name of the GUI file you want to use for the demo
+
+	eg. from wx_GUI import *
+	
+4. It will display a sample application
+
+Note: There is also a demo_tk.py file with slight modification for tk_GUI due to a small compatibility issue that there is no event keyword support in tkInter.

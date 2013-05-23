@@ -1,0 +1,415 @@
+Index: Assignment6/P2010CS1034_PyQt.py
+===================================================================
+--- Assignment6/P2010CS1034_PyQt.py	(revision 0)
++++ Assignment6/P2010CS1034_PyQt.py	(revision 0)
+@@ -0,0 +1,230 @@
++#!/usr/bin/env python
++from PyQt4 import QtCore, QtGui
++from PyQt4.QtGui import *
++import sys
++
++class App(QtGui.QApplication):													#App:- start and loop an application
++	def __init__(self):
++		super(App,self).__init__(sys.argv)
++			
++	def loop(self):
++		return sys.exit(self.exec_())
++
++class Windows(QtGui.QWidget):														#class for making a window:- x & y=position; width & height=window size 
++	def __init__(self,title,x,y,width,height):						# constructor
++		super(Windows, self).__init__(parent=None)
++		self.setWindowTitle(title)
++		self.setGeometry(x,y,width,height)
++		
++	def show_window(self,box):														#setlayout and show window
++		self.setLayout(box)
++		self.show()
++	
++	def change_title(self,title):
++		self.setWindowTitle(title)		
++
++	def move_to_centre(self):															# for centring a window on screen
++		screen = QtGui.QDesktopWidget().screenGeometry()
++		size = self.geometry()
++		self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
++		
++	def close_window(self):																# for closing window
++		self.close()
++	
++	def change_color(self,color):													# change color of window
++		self.setStyleSheet("QWidget {background-color: %s; }"%color)
++	
++	def reset_color(self):
++		self.setStyleSheet("QWidget {background-color: %s; }"%None)
++
++class Statictext(QtGui.QLabel):													#Statictext:- text=to make label ,frm=parent window
++	def __init__(self,frm,text):													#constructor
++		super(Statictext, self).__init__(text)
++		
++	def set_text(self,text):
++		self.setText(text)
++
++class button(QtGui.QPushButton):												#button:- name=name of the button; frm=parent window; text=name of button
++	def __init__(self,frm,text):													#method= function to call on clicking; *args=arguments of function
++		super(button, self).__init__(text)
++		self.setFocusPolicy(QtCore.Qt.NoFocus)
++			
++	def bind(self,method,*args):													#bind:- binding button to function
++		if (method!=None and not args) or (method!=None and args[0]==None):
++			self.clicked.connect(method)
++		elif (method!=None and args!=None):
++			self.connect(self,QtCore.SIGNAL('clicked()'),(lambda x = args : method(*x)))
++
++class CheckBox(QtGui.QCheckBox):												#CheckBox:- text=checkbox label; frm=parent window; (value=true or false for activating or deactivating initially)
++	def __init__(self,frm,text):													#constructor
++		super(CheckBox, self).__init__(text)
++		self.setFocusPolicy(QtCore.Qt.NoFocus)
++
++	def get_state(self):																	#state(check/uncheck) of checkbox
++		return self.checkState()
++	
++	def bind(self,method,*args):													#binding to some function
++		if (method!=None and not args) or (method!=None and args[0]==None):
++			self.clicked.connect(method)
++		elif (method!=None and args!=None):
++			self.connect(self,QtCore.SIGNAL('clicked()'),(lambda x = args : method(x)))
++
++class ComboBox(QtGui.QComboBox):												#ComboBox:- name=name of combobox;frm=parent window; group=items to add in combobox
++	def __init__(self,frm,name,group):										#constructor
++		super(ComboBox, self).__init__()
++		self.setFocusPolicy(QtCore.Qt.NoFocus)
++		self.setStyleSheet("QComboBox { combobox-popup: 0; }")
++		if(name!=None):
++			self.addItem(name)
++		for i in group:
++			self.addItem(str(i))
++	
++	def get_value(self):																	#get selected text
++		return self.currentText()
++
++class MultiTextBox(QtGui.QTextEdit):										#MultiTextBox:-multi-line text box; frm=parent window
++	def __init__(self,frm):																#constructor
++		super(MultiTextBox,self).__init__()
++	
++	def set_text(self,text):
++		self.setText(text)
++	
++	def get_text(self):
++		return self.toPlainText()
++
++class SingleTextBox(QtGui.QLineEdit):										#SingleTextBox:-single-line text box; frm=parent window; visibility= 0/1 for password_protected/normal mode
++	def __init__(self,frm,visibility):										#constructor
++		super(SingleTextBox,self).__init__()
++		if visibility==0:
++			self.setEchoMode(self.Password)
++		else:
++			pass
++
++	def set_text(self,text):
++		self.setText(text)
++	
++	def get_text(self):
++		return self.text()
++
++class RadioButtonList(QtGui.QButtonGroup):							#radiobuttonlist:- group=radio button labels
++	def __init__(self,frm,group,ch1,ch2,st,grid,start):		#frm=parent window; ch1=0/1 for info/question; ch2=true answer's no.; st=label; i=row of starting radiobuttons
++		super(RadioButtonList,self).__init__()
++		self.rb={}
++		self.group=group
++		self.i=len(group)
++		self.x=ch1
++		self.y=ch2-1
++		self.text=st
++		for i in range(0,len(group)):
++			self.rb[i]=QtGui.QRadioButton(group[i])
++			self.rb[i].setFocusPolicy(QtCore.Qt.NoFocus)
++			self.rb[i].connect(self.rb[i],QtCore.SIGNAL('clicked()'),self.onclick)
++			self.addButton(self.rb[i],i)
++			grid.add(self.rb[i],start+i,0,1)
++
++	def onclick(self):
++		self.check=self.checkedId()
++		if self.x==1:
++			if self.check==self.y:
++				self.text.set_text("True")
++			else:
++				self.text.set_text("False")
++		elif self.x==0:
++			self.text.set_text( " Selected : " + self.group[self.checkedId()] )
++
++class Halignment(QtGui.QHBoxLayout):										#horizontal box:-alignment= left/right/center alignment of widgets;
++	def __init__(self,*alignment):												#	 list=list of widget/layout; i=row of starting radiobuttons
++		super(Halignment,self).__init__()
++		if alignment and alignment[0]=="right":
++			self.setAlignment(QtCore.Qt.AlignRight)
++		elif alignment and alignment[0]=="left":
++			self.setAlignment(QtCore.Qt.AlignLeft)
++		else:
++			self.setAlignment(QtCore.Qt.AlignHCenter)
++	
++	def add(self,item,i):
++		if(item.isWidgetType()==True):
++				self.addWidget(item)
++		elif(item.isWidgetType()==False):
++				self.addLayout(item)
++
++class Valignment(QtGui.QVBoxLayout):										#vertical box:- list=items to add in vbox; i=row of starting radiobuttons
++		def __init__(self):
++			super(Valignment,self).__init__()
++
++		def add(self,item,i):
++			if(item.isWidgetType()==True):
++				self.addWidget(item)
++			elif(item.isWidgetType()==False):
++				self.addLayout(item)
++
++class Alignment(QtGui.QGridLayout):											#alignment:- making grid; widget=to add to grid; row=row number; column=column number; cspan=colunm span
++	def __init__(self,parent):
++		super(Alignment,self).__init__()
++		
++	def add(self,widget,row,column,cspan):
++			if(widget.isWidgetType()==True):
++				self.addWidget(widget,row,column,1,cspan)
++			elif(widget.isWidgetType()==False):
++				self.addLayout(widget,row,column,1,cspan)
++				
++class SpinCtrl(QtGui.QSpinBox):												#SpinCtrl: frame=parent; value=initial value; minv=minimum value; maxv=maximum value
++	def __init__(self,frame,value,minv,maxv):
++		super(SpinCtrl,self).__init__()
++		self.setFocusPolicy(QtCore.Qt.NoFocus)
++		self.setMinimum(minv)
++		self.setMaximum(maxv)
++		self.setValue(value)
++	
++	def get_value(self):																# get value in the box
++		return self.value()
++
++class Slider(QtGui.QSlider):													#Slider: frame=parent; value=initial value; minv=minimum value; maxv=maximum value
++	def __init__(self,frame,value,minv,maxv):
++		super(Slider,self).__init__(QtCore.Qt.Horizontal)
++		self.setFocusPolicy(QtCore.Qt.NoFocus)
++		self.setMinimum(minv)
++		self.setMaximum(maxv)
++		self.setValue(value)
++		self.setToolTip("Slider")
++		self.setFixedSize(200,25)		
++		
++	def get_value(self):																# get value of the slider
++		return self.value()
++	
++class ProgressBar(QtGui.QProgressBar):								#Progress Bar: frame=parent; value=initial value; rang=maximum value; width=widget's width; height=widget's height
++	def __init__(self,frame,value,rang,width,height):
++		super(ProgressBar,self).__init__()
++		self.setFocusPolicy(QtCore.Qt.NoFocus) 
++		self.setRange(0,rang)
++		self.setValue(value)
++		self.resize(width,height)
++		self.setFixedSize(width,height)
++		self.startTimer(100)
++		
++	def get_value(self):																# get value of the position of progressbar
++		return self.value()
++		
++	def set_value(self,value):													# set value of progressbar
++		self.setValue(value)
++		
++class image(QtGui.QLabel):														#image:- frm=parent window; path=path of the image
++	def __init__(self,frm):
++		super(image,self).__init__()
++		
++	def set_image(self,path):
++		image=QtGui.QPixmap(path)
++		size=QtCore.QSize(10,30)
++		self.setPixmap(image)
++
++class FileDialog(QtGui.QFileDialog):									#FileDialog:- frame=parent window; text=title of dialog box
++	def __init__(self,frame,text):
++		super(FileDialog,self).__init__()
++		self.frame=frame
++	
++	def get_value(self):
++		path = QtGui.QFileDialog.getOpenFileName(self.frame, 'Choose a file','/home/')
++		return path
++
++
++
+Index: Assignment6/Assignment6.py
+===================================================================
+--- Assignment6/Assignment6.py	(revision 0)
++++ Assignment6/Assignment6.py	(revision 0)
+@@ -0,0 +1,72 @@
++#!/usr/bin/env python
++
++from P2010CS1034_PyQt import *
++
++#---------------------------------------------------------------------------------------
++def main():
++		app = App()
++
++		new=Windows("PyQt",500,100,400, 380)
++		grid=Alignment(new)
++		new.btn3 = button(new,'OK')
++		new.btn4 = button(new,'Cancel')
++		new.btn4.bind(new.close_window)
++
++		Label2={}
++		Label2[0] = Statictext(new,"Name and Address :")
++		Label2[1] = Statictext(new,"I am :")
++		Label2[2] = Statictext(new,"Date of Birth :")
++
++		new.nameLine2 = MultiTextBox(new)
++		
++		new.chb={}
++		new.chb[0]=CheckBox(new,"I am a student.")
++		new.chb[1]=CheckBox(new,"I am an employee.")
++		new.chb[2]=CheckBox(new,"I like reading novels.")
++		new.chb[3]=CheckBox(new,"I am addicted to the internet.")
++		
++		label3=Statictext(new,"")
++	
++		radio=RadioButtonList(new,['Male','Female'],0,2,label3,grid,4)
++
++		list=("January" , "February", "March", "April", "May", "June" , "July", "August", "September", "October", "November", "December")
++		new.cmb1=ComboBox(new,"Day",range(1,32))
++		new.cmb2=ComboBox(new,"Month",list)
++		new.cmb3=ComboBox(new,"Year",range(1940,2013))
++
++		new.spinlabel = Statictext(new,"Spinbox :	")											# spinbox
++		new.sp=SpinCtrl(new,5,-10,10)
++	
++		new.sliderlabel = Statictext(new,"Slider :	")										# Slider
++		new.sl=Slider(new,5,-10,50)
++		
++		new.pbarlabel = Statictext(new,"Progress Bar :")									# Progress Bar
++		new.pb=ProgressBar(new,10,100,300,25)
++		
++		grid.add(Label2[0],1,0,1)
++		grid.add(new.nameLine2,2,0,5)
++		grid.add(Label2[1],3,0,1)
++		grid.add(label3,5,1,4)
++		grid.add(Label2[2],6,0,1)
++		grid.add(new.cmb1,7,2,1)
++		grid.add(new.cmb2,7,3,1)
++		grid.add(new.cmb3,7,4,1)
++		grid.add(new.chb[0],8,0,4)
++		grid.add(new.chb[1],9,0,4)
++		grid.add(new.chb[2],10,0,4)
++		grid.add(new.chb[3],11,0,4)
++		grid.add(new.spinlabel,12,0,1)
++		grid.add(new.sp,12,1,1)
++		grid.add(new.sliderlabel,13,0,1)
++		grid.add(new.sl,13,1,4)
++		grid.add(new.pbarlabel,14,0,1)
++		grid.add(new.pb,14,1,4)
++		grid.add(new.btn3,16,3,1)
++		grid.add(new.btn4,16,4,1)
++		
++		new.show_window(grid)
++		app.loop()
++            
++if __name__ == '__main__':
++    main()
++
+Index: Assignment6/GroupAPI_extended.py
+===================================================================
+--- Assignment6/GroupAPI_extended.py	(revision 0)
++++ Assignment6/GroupAPI_extended.py	(revision 0)
+@@ -0,0 +1,98 @@
++#-------------------------GROUP	MEMBERS------------------------------
++#
++#	AMRITPAL SINGH	P2010CS1007	(Tkinter)
++#	RAMANJIT SINGH	P2010CS1034	(PyQt4)
++#	VIKAS CHOUDHARY	P2010CS1038	(WxPython)
++#	NABH CHOUDHARY	P2010CS1067	(PyGtk)
++#
++#--------------------------------------------------------------------
++
++#--------------------------------------------------------------------
++#API Summary:-
++#--------------------------------------------------------------------
++
++Class Windows:
++
++		def __init__(self, title, x_position, y_position, width, height):pass
++		def change_title(self, new_title):pass
++		def move_to_centre(self):pass
++		def show_window(self, box):pass
++		def change_color(self,color):pass
++		def reset_color(self):pass
++		
++Class Statictext:
++
++		def __init__(self, frame, text):pass
++		def set_text(self, text) :pass
++		
++		
++Class SingleTextBox:
++
++		def __init__(self, frame, text_visibility) :pass
++		def set_text(self, text) :pass
++		def get_text(self) :pass		 				
++		
++		
++Class MultiTextBox:
++
++		def __init__(self, frame):pass
++		
++
++Class button:
++
++		def __init__(self, frame, Label):pass
++		def bind(self, function, *args):pass
++		
++		
++Class RadioButtonList:
++
++		def __init__(self, frame, Labels_list, choice1, choice2, static_text_obj, grid, start):pass
++		
++Class CheckBox:
++		
++		def __init__(self, frame, checkbox_label):pass 
++		def bind(self, function, *args):pass
++		def get_state(self):pass
++		
++Class ComboBox:
++		
++		def __init(self, frame, name, combo_list):pass	
++	
++		
++Class Alignment:
++
++		def __init__(self, frame):pass
++		def add(self,Widget, row, column, columnspan):pass		
++		
++Class App:
++		
++		def __init(self):pass
++		def loop(self):pass
++
++Class SpinCtrl:
++
++		def __init__(self, frame, initial_value, minvalue, maxvalue):pass
++		def get_value(self):pass
++		
++Class Slider:
++		
++		def __init__(self, frame, initial_value, minvalue, maxvalue):pass
++		def get_value(self):pass
++		
++Class ProgressBar:
++
++		def __init__(self, frame, initial_value, range, width, height):pass
++		
++Class image:
++		
++		def __init__(self, frame):pass
++		def set_image(self, image_path):pass
++		
++class FileDialog:
++		
++		def __init__(self, frame, popup_text):pass
++		def get_value(self):pass										
++#--------------------------------------------------------------------
++#Description about these classes and functions is documented in trac.
++#--------------------------------------------------------------------
++

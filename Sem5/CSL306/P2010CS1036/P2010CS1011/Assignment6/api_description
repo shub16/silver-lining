@@ -1,0 +1,127 @@
+########    Any_Gui API    ########
+ 
+*About Any_Gui:-
+
+	Any_Gui is a python Gui which can be run on platforms of pyhton like PyGtk,PyQt,TkInter and wxPython.
+	It is developed by four students of Indian Institute of Technology Ropar
+	1. Abhishek Arora          2010cs1004  
+	2. Shubham Choudhary       2010cs1011
+	3. Deepak Garg		   2010cs1012
+	4. Abhimanyu Nirula        2010cs1087
+
+* Learning Method:-
+
+	Various number of classes are defined in Any_Gui which will be useful in creating a graphical user interface.
+
+	The definitions of various classes are as follows
+
+	1. WindowFrame
+		WindowFrame class is used to create a window. We can specify the Title , width and height of the window by the following declaration.
+		WindowFrame(Title,width,height)
+ 		
+		Various functions which can be used for the WindowFrame class are as follows 
+		a) WindowFrame.add_Widget(widget_name)
+			This function is used to add the widget in the WindowFrame.For eg. adding button widget to the window.
+		b) WindowFrame.Display_Window()
+			This function is used to display the window on screen.
+
+	2. TextArea
+		TextArea class provides a widget that is used to edit and display text. We can specify the size and positions of the textArea by the following declaration.
+		TextArea(initial_text,XPosition,YPosition,width,height) 
+		Various functions which can be used for the WindowFrame class are as follows
+		a) TextArea.setText(Text)
+			Sets the text of the TextArea as 'Text'.
+		b) TextArea.appendText(Text)
+			Adds 'Text' to the end of the TextArea.
+		c) TextArea.clear()
+			Clears all the text of the TextArea.			
+		d) TextArea.getText()
+			Returns all the text of TextArea.
+		e) TextArea.AppendBefore(str1,str2)
+			Adds string str2 before string str2.		
+		
+
+	3. TextLine
+		TextLine class  provides a widget that is used to edit and display text in a single line. We can specify the size and positions of the TextLine by the following declaration.
+		TextLine(XPosition,YPosition,width,height) 
+		Various functions which can be used for the TextLine class are as follows
+		a) TextLine.setText(Text)
+			Sets the text in the TextLine as 'Text'.
+		b) TextLine.getText()
+			Return the text whixh was in TextLine		
+		c) TextLine.clear()
+			Clears all the text of the TextLine.			
+
+	4. Label
+		Label provides a text display. We can specify the size and positions of the Label by the following declaration.
+		Label(Text,XPosition,YPosition,width,height)
+		
+
+	5.Password
+		Password class provides an encripted edit and display of a text in a single line.We can specify the size and positions of the Label by the following declaration.
+		Password(XPosition,YPosition,width,height)
+		Various functions which can be used for the TextLine class are as follows
+		a) Password.getText()
+			Return the password in decripted form.
+		
+		c) Password.clear()
+			Clears the password.
+	
+	6.Button
+		Button class provides a command button.We can specify the size and positions of the button by the following declaration.
+		Button(Name,XPosition,YPosition,width,height)
+		Various functions which can be used for the TextLine class are as follows
+		a)Button.clickListener(method)
+			This calls the function 'method' when the button is clicked.
+
+	7. DropDownList
+		DropDownList class provides a dropdown list.We can specify the name,list,size and positions of the DropDownList by the following declaration.
+		DropDownList(list,XPosition,YPosition,width,height,Name)
+		Various functions which can be used for the DropDownList class are as follows
+		a) DropDownList.getValue()
+			This returns the selected object of the list
+
+	8. CheckBox
+		CheckBox class provides a checkbox with a text label.We can specify the size and positions of the CheckBox by the following declaration.
+		CheckBox(Title,XPosition,YPosition,width,height)		
+		Various functions which can be used for the CheckList class are as follows
+		a) CheckBox.getValue()
+			This returns the object label if it is marked checked.
+		b) CheckBox.setValue(value)
+			This gives the default value to the oject label.
+ 
+	9. RadioGroup
+		RadioGroup provides a group of radio buttons with a text label.We can specify the size of the RadioGroup by the following declaration and the position by other functions.		
+		RadioGroup(width,height)
+		Various functions which can be used for the RadioGroup class are as follows
+		a) RadioGroup.addRadioButton(label,XPosition,YPosition)
+			A radio button is added with the label at the specified position.
+		b) RadioGroup.getValue()
+			This returns the object label which is checked marked.
+		c) RadioGroup.setButtonTrue(pos)
+			This sets to true the radio button at position pos.
+
+	10. SpinBox
+		SpinBox Class provides a spin box widget.We can specify the size,positions and range of the value of the SpinBox by the following declaration.
+		SpinBox(start,end,XPosition,YPosition,width,height)
+		Various functions which can be used for the SpinBox class are as follows
+		a)SpinBox.getValue()
+			Returns the value which was in the SpinBox.
+
+	11. Slider
+		Slider class provides a slider widget.We can specify the size,positions and range of the value of the Slider by the following declaration.
+		Slider(start,end,XPosition,YPosition,width,height)
+		Various functions which can be used for the Slider class are as follows
+		a)Slider.getValue()
+			Returns the value at which the tip of the slider currently is.
+
+	12. SelectList
+		SelectList class provides a selection list.We can specify the name,list,size and positions of the SelectList by the following declaration.
+		SelectList(list,XPosition,YPosition,width,height)
+		Various functions which can be used for the DropDownList class are as follows
+		a) SelectList.clickListener()
+			This calls the function 'method' when a object from the list is clicked.
+
+
+
+

@@ -1,0 +1,193 @@
+Index: wxa6.py
+===================================================================
+--- wxa6.py	(revision 436)
++++ wxa6.py	(working copy)
+@@ -1,5 +1,54 @@
+ import wx
++import wx.calendar
+ 
++def generate(self):
++    text_file = open("Output.txt", "w")
++    text_file.write("\n**********Begin_Description**********\n\n")    
++    text_file.write("Date and Time : %s\n\n"%(calender.getValue()))
++    
++    count=0
++
++    text_file.write("Important Events : \n")
++    if(ck1.getCheckState()):
++        text_file.write("Anniversary \n")
++        count=count+1
++    if(ck2.getCheckState()):
++        text_file.write("Birthday \n")
++        count=count+1
++    if(ck3.getCheckState()):
++        text_file.write("Meeting \n")
++        count=count+1
++        text_file.write("Travel \n")
++    if(ck4.getCheckState()):
++        count=count+1
++    if(ck5.getCheckState()):
++        text_file.write("Family \n")
++        count=count+1
++    if(ck6.getCheckState()):
++        text_file.write("Deadline \n")
++        count=count+1
++    if(ck7.getCheckState()):
++        text_file.write("Leisure \n")
++        count=count+1
++    if(count==0):
++        text_file.write("-None- \n")
++    
++    text_file.write("\nEvent rating/importance: %s"%sld1.getValue())
++    
++    text_file.write("\n\nEvent location: %s"%listBox.Selected())
++    
++    text_file.write("\n\nEvent time: %s"%timeBox.Selected())
++    
++    text_file.write("\n\nEvent Description:\n%s"%comments.getText())
++    
++    
++    text_file.write("\n\n**********End_Description**********")    
++   
++    text_file.close()
++    ok_label.setLabel("Output.txt generated")
++   
++
++
+ class myWindow(wx.Frame):
+     parent = None
+     def __init__(self,title,X,Y,width,height):
+@@ -43,11 +92,15 @@
+     def getText(self):
+         return self.controller.GetValue()
+ 
++
+ ''' WIDGETS: LABEL '''
+ class Label(wx.StaticText):
++    controller = None
+     def __init__(self,text,X,Y,width,height,cntrl):
+-        wx.StaticText(cntrl.panel, -1,text,(X,Y),wx.Size(width,height))
+-  
++        self.controller=wx.StaticText(cntrl.panel, -1,text,(X,Y),wx.Size(width,height))
++    
++    def setLabel(self,text):
++        self.controller.SetLabel(text)
+ 
+ ''' WIDGETS: Button '''
+ class Button(wx.Button):
+@@ -104,18 +157,38 @@
+         return self.controller.GetValue()
+ 
+ ''' WIDGETS: ListBox '''
+-class ListBox(wx.ListBox):
++class ComboBox(wx.ListBox):
+      controller=None
+-     def __init__(self,value,X,Y,width,height,cntrl):
++     def __init__(self,value,choices,X,Y,width,height,cntrl):
+          self.controller=wx.ComboBox(cntrl.panel, -1,value,(X,Y),wx.Size(width,height),style=wx.CB_READONLY)
+-         
+-     def addItems(self,choices):
+          self.controller.SetItems(choices)
+          
+      def Selected(self):
+          return self.controller.GetValue()
+ 
+-       
++''' WIDGETS: Slider '''
++class Slider(wx.Slider):
++        controller=None
++        def __init__(self,X,Y,width,height,cntrl):
++           self.controller=wx.Slider(cntrl.panel,-1,0,0,10,(X,Y),wx.Size(width,height),style=wx.SL_HORIZONTAL)
++            
++        def setRange(self,fromValue,toValue):
++            self.controller.SetMin(fromValue)
++            self.controller.SetMax(toValue)
++
++        def getValue(self):
++            return self.controller.GetValue()
++
++''' WIDGETS: Calender '''
++class Cld(wx.calendar.CalendarCtrl):
++       controller=None
++       def __init__(self,X,Y,width,height,cntrl):
++            self.controller=wx.calendar.CalendarCtrl(cntrl.panel,-1,wx.DateTime_Now(),(X,Y),wx.Size(width,height),style=wx.calendar.CAL_SHOW_HOLIDAYS)
++           
++       def getValue(self):
++            return self.controller.GetDate()
++
++
+ def Submit(self):
+     newps1 = NewPstb.getText();
+     newps2 = ReNewPstb.getText();
+@@ -161,20 +234,56 @@
+         
+         
+         
++WindowPanel = myWindow('To-Do List With AnyGUI' ,350,150,900,700)
++calender=Cld(420,60,340,240,WindowPanel)  
++
++comments=TextBox("\n    Enter event description here!!",40,60,340,240,WindowPanel)
++
++tag_label=Label("Tag Event:",40,310,100,50,WindowPanel)
++
++ck1=CheckBox("Anniversary ",40,350,150,30,WindowPanel)
++ck1.setCheckState(0)
++
++ck2=CheckBox("Birthday ",40,380,150,30,WindowPanel)
++ck2.setCheckState(0)
++
++ck3=CheckBox("Meeting ",40,410,150,30,WindowPanel)
++ck3.setCheckState(0)
++
++
++ck4=CheckBox("Travel ",40,440,150,30,WindowPanel)
++ck4.setCheckState(0)
++            
++
++ck5=CheckBox("Family ",40,470,150,30,WindowPanel)
++ck5.setCheckState(0)
++
++ck6=CheckBox("Deadline ",40,500,150,30,WindowPanel)
++ck6.setCheckState(0)
++
++
++ck7=CheckBox("Leisure ",40,530,150,30,WindowPanel)
++ck7.setCheckState(0)
++      
++imp_label=Label("Event importance:",510,320,200,50,WindowPanel)
++
++sld1=Slider(520,380,270,40,WindowPanel)
++sld1.setRange(0,10)
+         
+-WindowPanel = myWindow('wxWindow by Abhisaar Sharma' ,50,50,350,250)
+-      
+-userLbl=Label("Name :",20,15,80,30,WindowPanel)
+-OldPswdLbl=Label("Old Password",20,50,140,30,WindowPanel)
+-NewPswdLbl=Label("New Password",20,85,160,30,WindowPanel)
+-ReNwPsLbl=Label("Repeat Password",20,120,160,30,WindowPanel)
+-usrtb=TextBox("",150,15,150,30,WindowPanel)
+-OldPstb=PasswordBox("",150,50,150,30,WindowPanel)
+-NewPstb=PasswordBox("",150,85,150,30,WindowPanel)
+-ReNewPstb=PasswordBox("",150,120,150,30,WindowPanel)
+-    
+-btn= Button("Submit",30,180,100,35,WindowPanel)    
+-btn.buttonListener(Submit)
+-      
++       
++	
++myList=["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Chandigarh","Himachal Pradesh","Jammu and Kashmir","Srinagar and Jammu","Jharkhand","Karnataka","Kerala","Madya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Orissa","Punjab","Rajasthan","Sikkim","Tamil Nadu","Tripura","Uttaranchal","Uttar Pradesh","West Bengal"]
++	
++listBox=ComboBox("Location",myList,200,360,180,50,WindowPanel)
++	
++        
++timeList=["Morning","Afternoon","Evening","Night"]
++timeBox=ComboBox("Time",timeList,200,460,180,50,WindowPanel)
++	
++Gen=Button("Generate Text!",460,460,150,60,WindowPanel)
++Gen.buttonListener(generate)
++
++ok_label=Label("",535,550,150,50,WindowPanel)
++
+ if __name__ == '__main__':
+-    WindowPanel.show()
++    WindowPanel.show() 

@@ -1,0 +1,14 @@
+AnyGUI Folder contains the sourcee files for the APIs implemented in PyQT4.
+
+src folder contains the source files :
+(1) PyQT4_API.py
+
+This file contains the API's implemented in PyQT4 for different widgets.
+
+(2) main.py
+
+This is the demo program to show the functionalities of the widgets implemented in the PyQT4_API.py file.
+
+To Execute the program,download the folder src,navigate to the src folder and run the command 
+
+>>/..../src$python main.py

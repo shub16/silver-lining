@@ -1,0 +1,70 @@
+ 
+ ********INPUT***************
+ ./UnixLs -ilR
+ 
+ 
+ 
+********* Output************************
+ 
+ 
+ . : 
+941422 drwxrwxr-x 2 shubham shubham  4096 Nov  6 00:19  2010CS1036_Assignment5 
+6671 -rw-rw-r-- 1 shubham shubham    33 Nov 16 20:21  Makefile 
+279775 drwx------ 2 shubham shubham  4096 Oct 12 20:26  P2010CS1001 
+280503 drwxrwxr-x 2 shubham shubham  4096 Aug 28 11:58  P2010CS1036_Assignment1 
+918664 drwxrwxr-x 2 shubham shubham  4096 Aug 31 17:53  P2010CS1036_Assignment2 
+931630 drwxrwxr-x 2 shubham shubham  4096 Sep 14 23:20  P2010CS1036_Assignment3 
+304915 drwxrwxr-x 2 shubham shubham  4096 Oct 12 22:31  P2010CS1036_Assignment4 
+5656 -rw-rw-r-- 1 shubham shubham  1660 Oct 12 20:41  P2010CS1036_Shubham_Upadhyay.tar.gz 
+929397 -rw-rw-r-- 1 shubham shubham 28323 Nov  2 21:59  README.odt 
+6677 -rwxrwxr-x 1 shubham shubham 13669 Nov 16 23:33  UnixLs 
+6678 -rwxrwxr-x 1 shubham shubham 13368 Oct 12 20:26  a.out 
+6651 -rw-rw-r-- 1 shubham shubham    16 Oct 11 00:20  a.txt 
+6650 -rw-rw-r-- 1 shubham shubham   303 Oct 12 18:45  b.txt 
+937347 -rw-rw-r-- 1 shubham shubham 28725 Nov  3 22:31  description.odt 
+941225 -rw-rw-r-- 1 shubham shubham  1848 Oct 12 19:01  os4.zip 
+6672 -rw-rw-r-- 1 shubham shubham  4465 Oct 12 18:50  rr.c 
+6679 -rw-rw-r-- 1 shubham shubham  3878 Oct 12 20:26  rr1.c 
+6676 -rw-rw-r-- 1 shubham shubham  5431 Nov 16 23:31  scanFile.c 
+
+
+./2010CS1036_Assignment5 :
+941820 -rw-rw-r-- 1 shubham shubham 36121 Nov  2 21:59  README.pdf 
+941816 -rw-rw-r-- 1 shubham shubham 46394 Nov  3 22:34  description.pdf 
+941797 -rw-r--r-- 1 shubham shubham    41 Nov  3 23:03  makefile 
+941804 -rw-rw-r-- 1 shubham shubham  3100 Nov  3 23:27  mem.c 
+941814 -rw-r--r-- 1 shubham shubham    65 Nov  3 23:26  mymalloc.h 
+931617 -rw-r--r-- 1 shubham shubham  2970 Nov  3 11:38  testapp.c 
+
+
+
+./P2010CS1001 :
+304916 -rwxrwxr-x 1 shubham shubham 13184 Oct 12 20:26  a.out 
+279794 -rw-r--r-- 1 shubham shubham  5748 Oct  6 12:35  rrsim.c 
+304914 -rw-r--r-- 1 shubham shubham   303 Oct  2 14:42  testcase.txt 
+
+
+
+./P2010CS1036_Assignment1 :
+919135 -rw-rw-r-- 1 shubham shubham   344 Aug  8 23:00  dice.c 
+931605 -rw-rw-r-- 1 shubham shubham   490 Aug 17 11:15  pass.c 
+933282 -rw-rw-r-- 1 shubham shubham   290 Aug 17 02:08  triplets.c 
+
+
+
+./P2010CS1036_Assignment2 :
+933347 -rw-rw-r-- 1 shubham shubham  3669 Aug 31 17:52  ksamp.c 
+
+
+
+./P2010CS1036_Assignment3 :
+938819 -rw-rw-r-- 1 shubham shubham  7210 Sep 14 23:19  signal.c 
+929286 -rw-rw-r-- 1 shubham shubham  7210 Sep 14 19:48  signal.c~ 
+
+
+
+./P2010CS1036_Assignment4 :
+304921 -rw-rw-r-- 1 shubham shubham  3878 Oct 12 20:26  P2010CS1036_Shubham_Upadhyay.c 
+304922 -rw-rw-r-- 1 shubham shubham   303 Oct 12 18:45  P2010CS1036_data.txt 
+279769 -rwxrwxr-x 1 shubham shubham 13393 Oct 12 22:31  a.out 
+

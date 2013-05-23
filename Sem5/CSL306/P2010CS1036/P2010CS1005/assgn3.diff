@@ -1,0 +1,83 @@
+Index: Assignment3.py
+===================================================================
+--- Assignment3.py	(revision 0)
++++ Assignment3.py	(revision 0)
+@@ -0,0 +1,78 @@
++import Tkinter
++import ScrolledText
++from Tkinter import *
++class Gui:
++	def __init__(self, master):
++		frame = Frame(master)
++		frame.config(borderwidth=4,relief=RAISED)
++		frame.pack(fill=X)
++		frametop=Frame(master)
++		frametop.config(borderwidth=4,relief=RAISED)
++		frametop.pack(fill=X)
++		framemiddle= Frame(master)
++		framemiddle.config(borderwidth=4,relief=RAISED)
++		framemiddle.pack(fill=X)
++		framebottom=Frame(master)
++		framebottom.config(borderwidth=4,relief=RAISED)
++		framebottom.pack(fill=X)
++
++		Label(frame,text="Select the Python editor from the following",fg="purple").pack(side=TOP,padx=5,pady=5)
++		l = Button (frame, width =10,  text = "Py-QT",    command=self.others,fg="purple")
++		l.pack(padx=10,pady=10,side=LEFT)
++		m = Button (frame, width =10, text = "Tkinter", command=self.mine,fg="purple")
++		m.pack(padx=10,pady=10,side=LEFT)
++		n = Button (frame, width =10,  text = "Quit",    command=frame.quit,fg="purple")
++		n.pack(padx=10,pady=10,side=LEFT)	
++
++		v = IntVar()
++		Label(framemiddle,text="Select An Option",fg="purple").pack(side=LEFT,padx=10,pady=13)
++      	  	Radiobutton(framemiddle, text="Radio Button one", variable=v, value=1,fg="purple").pack(side=LEFT, anchor="w" )
++      	  	Radiobutton(framemiddle, text="Radio Button two", variable=v, value=2,fg="purple").pack(side=LEFT, anchor="w")
++        
++		Label(framebottom,text="List",fg="purple").pack(fill=X,side=TOP,padx=5)
++		scrollbar=Scrollbar(framebottom)
++		scrollbar.pack(side=RIGHT, fill=Y)
++		listbox = Listbox(framebottom,height=6,width=45)
++		listbox.pack(fill=X)
++		for item in ["option a", "option b", "option c", "option d","option e","option f","option g","option h"]:
++    			listbox.insert(END, item)
++			listbox.config(yscrollcommand=scrollbar.set)
++			scrollbar.config(command=listbox.yview)
++			
++		CheckVar1 = IntVar()
++		CheckVar2 = IntVar()
++		Label(frametop,text="Tick the Required",fg="purple").pack(side=LEFT,padx=5,pady=10)
++		C1 = Checkbutton(frametop, text = "Check Box two", variable = CheckVar1, \
++                onvalue = 1, offvalue = 0, height=1, \
++                width = 15,fg="purple")
++		C2 = Checkbutton(frametop, text = "Check Box one", variable = CheckVar2, \
++                onvalue = 1, offvalue = 0, height=1, \
++                width = 15,fg="purple")
++		C1.pack(side=BOTTOM,padx=10,pady=4)
++		C2.pack(side=BOTTOM,padx=10,pady=4)
++
++
++	def others(self):
++		import textAndButton
++	def mine(self):
++		root =Tk()
++		root.title('entry widget')
++		Label (text='').pack(side=TOP,padx=10,pady=10)
++		Entry(root, width=10).pack(side=TOP,padx=70,pady=20)
++		Button(root, text='button').pack()
++		root.mainloop()
++
++def main():
++	root =Tk()
++	root.config()
++	w = 400	
++	h = 400
++	x = 60
++	y = 150
++	root.geometry("%dx%d+%d+%d" % (w, h, x, y))
++	root.title('p2010cs1005')
++	hell=Gui(root)
++	root.mainloop()
++
++if __name__ == '__main__':
++    main()  

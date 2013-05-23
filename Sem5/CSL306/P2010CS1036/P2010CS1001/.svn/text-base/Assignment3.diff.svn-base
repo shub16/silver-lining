@@ -1,0 +1,83 @@
+Index: Assignment1_2010cs1001.py
+===================================================================
+--- Assignment1_2010cs1001.py	(revision 94)
++++ Assignment1_2010cs1001.py	(working copy)
+@@ -7,37 +7,7 @@
+ class MyFrame(wx.Frame):
+     def __init__(self, parent, id, title):
+         wx.Frame.__init__(self, parent, id, title, (-1, -1), wx.Size(550, 550))
+-        panel = wx.Panel(self, -1)
+-        panel.SetBackgroundColour("#770000")
+-        box = wx.BoxSizer(wx.HORIZONTAL)
+         
+-        box.Add(wx.TextCtrl(panel, style=wx.TE_MULTILINE), 2, wx.EXPAND | wx.ALL,10 )
+-        box.Add(wx.Button(panel, -1, 'Click Me !'), 1, wx.EXPAND | wx.ALL,10 )
+-       
+-
+-        
+-        panel.SetSizer(box)
+-        self.Centre()
+-
+-class MyApp(wx.App):
+-     def OnInit(self):
+-         frame = MyFrame(None, -1, 'wxboxsizer.py')
+-         frame.Center()
+-         frame.Show(True)
+-         return True
+-
+-app = MyApp(0)
+-app.MainLoop()#!/usr/bin/python
+-
+-# wxboxsizer.py
+-
+-import wx
+-
+-
+-class MyFrame(wx.Frame):
+-    def __init__(self, parent, id, title):
+-        wx.Frame.__init__(self, parent, id, title, (-1, -1), wx.Size(550, 550))
+-        
+         panel = wx.Panel(self, -1)
+         panel.SetBackgroundColour("#770000")
+         
+@@ -55,6 +25,31 @@
+ 
+         box.Add(button3, 1, wx.EXPAND | wx.ALL,10 )
+ 
++        radiobox = wx.StaticBoxSizer(wx.StaticBox(panel, -1, 'Radios'), orient=wx.VERTICAL)
++        radiobox.Add(wx.RadioButton(panel, -1, 'Forward', style=wx.RB_GROUP))
++        radiobox.Add(wx.RadioButton(panel, -1, 'Backward'))
++        
++        checkbox = wx.StaticBoxSizer(wx.StaticBox(panel, -1, 'Checks'), orient=wx.VERTICAL)
++        
++        checkbox.Add(wx.CheckBox(panel, 1, 'Check 1'))
++        checkbox.Add(wx.CheckBox(panel, 2, 'Check 2'))
++        checkbox.Add(wx.CheckBox(panel, 3, 'Check 3'))
++        
++        sampleList = ["Choice_1","Choice_2","Choice_3","Choice_4","Choice_5","Choice_6","Choice_7","Choice_8","Choice_9"]
++        lb = wx.ListBox(panel,size=wx.DefaultSize,choices=sampleList)
++
++        
++        widgetbox = wx.BoxSizer(wx.VERTICAL)
++        widgetbox.Add(radiobox, 1, wx.ALL, 5)
++        widgetbox.Add(checkbox, 1, wx.ALL, 5)
++        widgetbox.Add(lb, 2, wx.TOP, 15)
++        
++        
++        
++        
++        box.Add(widgetbox, 1, wx.ALL, 15)
++
++        
+         self.Bind(wx.EVT_BUTTON, self.OnClickbut1, id=button1.GetId())
+         
+         self.Bind(wx.EVT_BUTTON, self.OnClickbut2, id=button2.GetId())
+@@ -76,7 +71,7 @@
+     def OnClickbut2(self, event):
+         self.Close()
+         import k
+-                
++        
+     def OnClickbut3(self, event):
+         self.Close()    
+ 

@@ -1,0 +1,28 @@
+INSTANT_LETTERMAKER APPLICATION
+
+Group Members:
+
+Abhishek Arora 		2010CS1004
+Choudhary Shubham	2010CS1011
+Deepak Garg		2010CS1012
+Abhimanyu R Niroola 	2010CS108
+
+Purpose: This application can be used to generate business letters instantly by selecting from commonly used adresses of clients and 
+	 frequently used template messages from list of messages and the letters genearted can be saved for further sending to the clients.
+	
+Layout and How to use the INSTANT_LETTERMAKER APPLICATION :
+
+The application is in the file demo7.py
+After Executing the above file in terminal , select the GUI toolkit in which you want to use the application.
+Application is currently available in PyGtk,PyQt,TkInter,wxPython.
+
+At start of the application , it displays a two-sidedpane. The right panel has two frames, one for selecting the clients from a list of 
+clients name with their addresses and one for selecting the template messages from a list of frequently used messages by the appliction user.
+Application user can also manually customise the message, address & Name of Clients.
+
+The left panel displays the content of the Letter and the selections made from the selections made from Right panel are instantly displayed in the left panel.
+The letters generated can be saved by putting filename in a Textfield at the bottom of application and then clicking the SAVE button which will save the current letter shown in left panel in the current working  directory with file name as entered in the above mentioned field.
+
+Application user also has an option to clear the selectons made till now by clicking New button at the top of application Frame.
+
+!!!Enjoy Instant Letter Making and save Your time and Money..

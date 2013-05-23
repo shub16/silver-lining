@@ -1,0 +1,113 @@
+<map version="0.9.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1336643209396" ID="ID_1992770207" MODIFIED="1336643227784" TEXT="SoftwareEngineering">
+<node CREATED="1336643230826" ID="ID_1895430625" MODIFIED="1336643964013" POSITION="right" TEXT="Coding">
+<icon BUILTIN="full-1"/>
+<node CREATED="1336643237144" ID="ID_1305995331" MODIFIED="1336643553233" TEXT="Python">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Syntax, getting started
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1336643246140" ID="ID_273216416" MODIFIED="1336643262152" TEXT="Programming languages">
+<node CREATED="1336643275912" ID="ID_1797826178" MODIFIED="1336643490859" TEXT="Structure">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Basic needs - variables, conditional code, iteration
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1336643283817" ID="ID_1471940876" MODIFIED="1336643531544" TEXT="Paradigms">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      functional, object oriented, procedural
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1336643323264" ID="ID_1673275185" MODIFIED="1336643327721" TEXT="Metrics">
+<node CREATED="1336643330604" ID="ID_373148602" MODIFIED="1336643333367" TEXT="LOC"/>
+<node CREATED="1336643336221" ID="ID_991301788" MODIFIED="1336643340441" TEXT="Defects"/>
+<node CREATED="1336643341145" ID="ID_115812287" MODIFIED="1336643349940" TEXT="Time to Repair"/>
+</node>
+<node CREATED="1336643566572" ID="ID_1638454085" MODIFIED="1336643599361" TEXT="Supporting needs">
+<node CREATED="1336643601699" ID="ID_337938482" MODIFIED="1336643606362" TEXT="Documentation">
+<node CREATED="1336643688615" ID="ID_1196361966" MODIFIED="1336643847871" TEXT="How to use it"/>
+<node CREATED="1336643693594" ID="ID_28149532" MODIFIED="1336643855184" TEXT="What it does"/>
+</node>
+<node CREATED="1336643607305" ID="ID_325846155" MODIFIED="1336643652211" TEXT="Tracking">
+<node CREATED="1336643860018" ID="ID_285971008" MODIFIED="1336643865550" TEXT="Tasks"/>
+<node CREATED="1336643866121" ID="ID_886247934" MODIFIED="1336643869675" TEXT="Defects"/>
+</node>
+</node>
+</node>
+<node CREATED="1336644361714" ID="ID_2032497" MODIFIED="1336644369130" POSITION="right" TEXT="Testing">
+<icon BUILTIN="full-2"/>
+<node CREATED="1336644419209" ID="ID_969902526" MODIFIED="1336644429112" TEXT="Unit testing">
+<node CREATED="1336644439912" ID="ID_1960351212" MODIFIED="1336644443916" TEXT="JUnit"/>
+</node>
+<node CREATED="1336644460513" ID="ID_1532967526" MODIFIED="1336644471328" TEXT="Build systems"/>
+</node>
+<node CREATED="1336644026282" ID="ID_320666109" MODIFIED="1336644403169" POSITION="right" TEXT="Design">
+<icon BUILTIN="full-3"/>
+<node CREATED="1336644045764" ID="ID_985763473" MODIFIED="1336644216172" TEXT="Function oriented">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Not to be confused with functional programming languages
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1336644068313" ID="ID_533320077" MODIFIED="1336644073624" TEXT="Modules"/>
+<node CREATED="1336644321530" ID="ID_631950339" MODIFIED="1336644330961" TEXT="API"/>
+</node>
+<node CREATED="1336644055801" ID="ID_1274909780" MODIFIED="1336644062843" TEXT="Object oriented">
+<node CREATED="1336644111836" ID="ID_1433695027" MODIFIED="1336644115745" TEXT="Classes"/>
+<node CREATED="1336644295824" ID="ID_1046288145" MODIFIED="1336644300016" TEXT="UML"/>
+</node>
+</node>
+<node CREATED="1336645034367" ID="ID_1028988042" MODIFIED="1336645209293" POSITION="left" TEXT="Acceptance">
+<icon BUILTIN="full-7"/>
+<node CREATED="1336645104792" ID="ID_1400772961" MODIFIED="1336645129052" TEXT="Performance"/>
+<node CREATED="1336645113296" ID="ID_1201623761" MODIFIED="1336645138303" TEXT="Functional needs"/>
+</node>
+<node CREATED="1336644532834" ID="ID_1237198666" MODIFIED="1336645204029" POSITION="left" TEXT="Requirements">
+<icon BUILTIN="full-6"/>
+<node CREATED="1336644577326" ID="ID_1695370319" MODIFIED="1336644581687" TEXT="Use cases"/>
+<node CREATED="1336644582306" ID="ID_124565182" MODIFIED="1336645200411" TEXT="SRS"/>
+</node>
+<node CREATED="1336644621836" ID="ID_972403321" MODIFIED="1336645000936" POSITION="left" TEXT="System Design">
+<icon BUILTIN="full-5"/>
+<node CREATED="1336644777383" ID="ID_1640039203" MODIFIED="1336644783715" TEXT="Architecture"/>
+<node CREATED="1336644962063" ID="ID_470324445" MODIFIED="1336644982140" TEXT="High level modules"/>
+</node>
+<node CREATED="1336644675361" ID="ID_675680214" MODIFIED="1336644845823" POSITION="left" TEXT="Integration">
+<icon BUILTIN="full-4"/>
+<node CREATED="1336644697520" ID="ID_1357051149" MODIFIED="1336644716589" TEXT="Integrated testing"/>
+<node CREATED="1336645451080" ID="ID_47272142" MODIFIED="1336645460639" TEXT="Continuous build systems"/>
+</node>
+</node>
+</map>

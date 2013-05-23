@@ -1,0 +1,85 @@
+Index: Assignment1.py
+===================================================================
+--- Assignment1.py	(revision 80)
++++ Assignment1.py	(working copy)
+@@ -2,33 +2,68 @@
+ 
+ from PyQt4 import QtCore, QtGui
+ from PyQt4.QtGui import *
++import sys
+ 
+ class Dialog_box(QtGui.QWidget):
+     
+     def __init__(self, parent=None):
+         super(Dialog_box, self).__init__(parent)
+ 
+-        self.setWindowTitle("Input")    
+-        self.btn = QtGui.QPushButton('OK', self)
+-        nameLabel = QtGui.QLabel("Name and Address:")
+-        self.nameLine = QtGui.QTextEdit()
+-
++        self.setWindowTitle("Choose a Toolkit")
++        nameLabel = QtGui.QLabel("Choose one of these:")
++        self.btn = QtGui.QPushButton('PyQT', self)
++        self.btn.clicked.connect(self.pyqtbox)
++        self.btn2 = QtGui.QPushButton('Tkinter', self)
++        self.btn2.clicked.connect(self.tkbox)
++        self.btn3 = QtGui.QPushButton('Close', self)
++        self.btn3.clicked.connect(self.close)
++        
+         buttonLayout = QtGui.QHBoxLayout()
++        buttonLayout.addWidget(self.btn, 0)
+         buttonLayout.addStretch(1)
+-        buttonLayout.addWidget(self.btn, 0)
++        buttonLayout.addWidget(self.btn2, 0)
++        buttonLayout.addStretch(1)
++        buttonLayout.addWidget(self.btn3, 0)
+ 
+         mainLayout = QtGui.QVBoxLayout()
+         mainLayout.addWidget(nameLabel, 0 )
+-        mainLayout.addWidget(self.nameLine, 0 )
+         mainLayout.addLayout(buttonLayout)
+-        
+         self.setLayout(mainLayout)
++        self.resize(340, 100)
++             
++    def pyqtbox(new):
++        new=QtGui.QDialog()
++        new.setWindowTitle("PyQT")    
++        new.btn3 = QtGui.QPushButton('OK',new)
++        nameLabel2 = QtGui.QLabel("Name and Address:")
++        new.nameLine2 = QtGui.QTextEdit()
+ 
+-        self.resize(330, 200)
+-                
+-if __name__ == '__main__':
+-    import sys
++        buttonLayout2 = QtGui.QHBoxLayout()
++        buttonLayout2.addStretch(1)
++        buttonLayout2.addWidget(new.btn3, 0)
++
++        mainLayout2 = QtGui.QVBoxLayout()
++        mainLayout2.addWidget(nameLabel2, 0 )
++        mainLayout2.addWidget(new.nameLine2, 0 )
++        mainLayout2.addLayout(buttonLayout2)
++        
++        new.setLayout(mainLayout2)
++
++        new.resize(330, 200)
++        new.show()
++        QDialog.exec_(new)
++               
++        
++    def tkbox(self):
++        import P2010CS1007_tkinter
++
++
++def main():
+     app = QtGui.QApplication(sys.argv)
+     Input_box = Dialog_box()
+     Input_box.show()
+     sys.exit(app.exec_())
++    
++            
++if __name__ == '__main__':
++    main()

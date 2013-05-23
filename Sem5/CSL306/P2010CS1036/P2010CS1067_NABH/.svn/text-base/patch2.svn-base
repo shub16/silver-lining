@@ -1,0 +1,28 @@
+Index: wxtext.py
+===================================================================
+--- wxtext.py	(revision 40)
++++ wxtext.py	(working copy)
+@@ -1,4 +1,5 @@
+ import wx
++import gtkbox
+ WIDTH = 300
+ HEIGHT = 400
+ class Panel(wx.Frame):
+@@ -25,6 +26,15 @@
+ 	
+ 	def submitEvent(make, event):
+ 		make.submitArea.SetValue(make.input.GetValue())
++		
+ app = wx.App(redirect=False)
+-window = Panel()
+-app.MainLoop()
++input= raw_input("Enter 1 for Wxpython and 2 for PyQT. Program will quit otherwise. ")
++if input=="1":
++	window = Panel()
++	app.MainLoop()
++elif input=="2":
++	entry=gtkbox.TextBox()
++	entry.main()
++else:
++	print("invalid input")
++

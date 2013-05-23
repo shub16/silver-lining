@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>
+      AbhisaarSharma – CSL306
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+        <link rel="search" href="http://10.1.0.140/trac/search">
+        <link rel="help" href="http://10.1.0.140/trac/wiki/TracGuide">
+        <link rel="alternate" href="http://10.1.0.140/trac/wiki/AbhisaarSharma?format=txt" type="text/x-trac-wiki" title="Plain Text">
+        <link rel="start" href="http://10.1.0.140/trac/wiki">
+        <link rel="stylesheet" href="AbhisaarSharma_files/trac.css" type="text/css"><link rel="stylesheet" href="AbhisaarSharma_files/wiki.css" type="text/css">
+        <link rel="shortcut icon" href="http://10.1.0.140/trac/chrome/common/trac.ico" type="image/x-icon">
+        <link rel="icon" href="http://10.1.0.140/trac/chrome/common/trac.ico" type="image/x-icon">
+      <link type="application/opensearchdescription+xml" rel="search" href="http://10.1.0.140/trac/search/opensearch" title="Search CSL306">
+    <script type="text/javascript" src="AbhisaarSharma_files/jquery.js"></script><script type="text/javascript" src="AbhisaarSharma_files/babel.js"></script><script type="text/javascript" src="AbhisaarSharma_files/en_US.js"></script><script type="text/javascript" src="AbhisaarSharma_files/trac.js"></script><script type="text/javascript" src="AbhisaarSharma_files/search.js"></script><script type="text/javascript" src="AbhisaarSharma_files/folding.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+    <link rel="alternate" type="application/x-wiki" title="Edit this page" href="http://10.1.0.140/trac/wiki/AbhisaarSharma?action=edit">
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $("#content").find(".wikianchor").each(function() {
+          $(this).addAnchor(babel.format(_("Link to #%(id)s"), {id: $(this).attr('id')}));
+        });
+        $(".foldable").enableFolding(true, true);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://10.1.0.140/trac/wiki/TracIni#header_logo-section"><img src="AbhisaarSharma_files/your_project_logo.html" alt="(please configure the [header_logo] section in trac.ini)"></a>
+      </div>
+      <form id="search" action="/trac/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input id="proj-search" name="q" size="18" type="text">
+          <input value="Search" type="submit">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first">logged in as p2010cs1001</li><li><a href="http://10.1.0.140/trac/logout">Logout</a></li><li><a href="http://10.1.0.140/trac/prefs">Preferences</a></li><li><a href="http://10.1.0.140/trac/wiki/TracGuide">Help/Guide</a></li><li class="last"><a href="http://10.1.0.140/trac/about">About Trac</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="http://10.1.0.140/trac/wiki">Wiki</a></li><li><a href="http://10.1.0.140/trac/timeline">Timeline</a></li><li><a href="http://10.1.0.140/trac/roadmap">Roadmap</a></li><li><a href="http://10.1.0.140/trac/browser">Browse Source</a></li><li><a href="http://10.1.0.140/trac/report">View Tickets</a></li><li><a href="http://10.1.0.140/trac/newticket">New Ticket</a></li><li class="last"><a href="http://10.1.0.140/trac/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="pagepath" class="noprint">
+  <a class="pathentry first" title="View WikiStart" href="http://10.1.0.140/trac/wiki">wiki:</a><a class="pathentry" href="http://10.1.0.140/trac/wiki/AbhisaarSharma" title="View AbhisaarSharma">AbhisaarSharma</a>
+</div>
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><a href="http://10.1.0.140/trac/wiki/WikiStart">Start Page</a></li><li><a href="http://10.1.0.140/trac/wiki/TitleIndex">Index</a></li><li class="last"><a href="http://10.1.0.140/trac/wiki/AbhisaarSharma?action=history">History</a></li>
+          </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          
+          <div class="trac-modifiedby">
+            <span><a href="http://10.1.0.140/trac/wiki/AbhisaarSharma?action=diff&amp;version=12" title="Version 12 by p2010cs1001">Last modified</a> <a class="timeline" href="http://10.1.0.140/trac/timeline?from=2012-11-18T22%3A28%3A01%2B05%3A30&amp;precision=second" title="2012-11-18T22:28:01+05:30 in Timeline">2 hours</a> ago</span>
+            <span class="trac-print">Last modified on 11/18/12 22:28:01</span>
+          </div>
+          <div id="wikipage"><p>
+I am using wxPython as a toolkit for my project.
+<br>
+</p>
+<p>
+<strong>Assignment 1</strong>
+</p>
+<p>
+I built a window with a text box and a push button. The user can enter 
+text into the box and can press the button. Currently no action has been
+ specified for the button.
+<br>
+</p>
+<p>
+<strong>Assignment 2</strong>
+</p>
+<p>
+To include another persons code in my program - i imported <a class="missing wiki" href="http://10.1.0.140/trac/wiki/PyQt" rel="nofollow">PyQt?</a> code.
+</p>
+<p>
+use the following 
+ 
+</p>
+<pre class="wiki">import &lt;''filename''&gt;
+</pre><p>
+    
+Initially a window opens up with three options asking the user to select a module or exit.
+wxPython module in Assignment 1 has been modified - the push button now exits closes the window.
+<br>
+</p>
+<p>
+<strong>Assignment 3</strong>
+</p>
+<p>
+To extend the previous work by adding checkboxes, radio buttons and a list.
+<br>
+</p>
+<p>
+<strong>Assignment 4</strong>
+</p>
+<p>
+Extend previous work by building an API for all the widgets so far
+<br>
+</p>
+<p>
+<strong>Assignment 5</strong>
+</p>
+<p>
+To include a Passwordbox in the previous API and include a unittest module that checks the correctness of password validator.
+<br>
+</p>
+<p>
+<strong>Assignment 6</strong>
+</p>
+<p>
+To extend code with additional widgets, i included a calender and a slider.
+<br>
+</p>
+<p>
+<strong>Assignment 7</strong>
+</p>
+<p>
+Implementing group project <strong>AnyGUI</strong>
+</p>
+<p>
+AnyGUI is a python based graphical toolkit which helps in making 
+graphical user interfaces. It accomplishes this by providing an API 
+which abstracts away the underlying implementation of widgets. The 
+AnyGUI API we present is derived from four gui toolkits - wxPython, <a class="missing wiki" href="http://10.1.0.140/trac/wiki/PyQt" rel="nofollow">PyQt?</a>, <a class="missing wiki" href="http://10.1.0.140/trac/wiki/TkInter" rel="nofollow">TkInter?</a> and PyGTK.
+</p>
+<p>
+The design of the API is described below:
+</p>
+<p>
+The main class is <strong>myWindow</strong> that creates a wx.Frame and 
+takes a wx.App object as a parent, a title, X-position, Y-position 
+,width and height as arguments. It creates the wx.Panel as an attribute 
+of the Frame. The parent of Wx.Frame is set to None.
+</p>
+<pre class="wiki">class myWindow(wx.Frame):
+    parent = None
+    def __init__(self,title,X,Y,width,height):
+        self.app = wx.App(False)
+        wx.Frame.__init__(self, self.parent, 1, title, (X,Y),wx.Size(width, height))
+        self.panel = wx.Panel(self, -1)
+</pre><p>
+This class has a function show that makes the frame visible, places it 
+the screen center and calls app.Mainloop() to start listening for event.
+ 
+</p>
+<pre class="wiki">def show(self):
+        self.Show(True)
+        self.Centre()
+        self.app.MainLoop()
+        return
+</pre><p>
+A close function is provided for closing the window.
+</p>
+<pre class="wiki">def close(self):
+        self.Close()
+</pre><p>
+A class is designed for each widget implemented - a brief description is provided below.
+</p>
+<p>
+<strong>class Button</strong>:<br>
+It creates a button and binds its event to a function.
+The constructor takes as arguments the button title, its X and Y 
+coordinates, its width and height, the parent in which its to be added. 
+</p>
+<pre class="wiki">class Button(wx.Button):
+    controller = None
+    def __init__(self,title,X,Y,width,height,cntrl):
+        self.controller=wx.Button(cntrl.panel, -1, title, (X,Y), wx.Size(width,height) )
+</pre><p>
+To bind the Button click event to a function, we use the buttonListener method.
+</p>
+<pre class="wiki">def buttonListener(self,method):
+        self.controller.Bind(wx.EVT_BUTTON, method)
+</pre><p>
+<strong>class <a class="wiki" href="http://10.1.0.140/trac/wiki/TextBox">TextBox</a></strong>:<br>
+</p>
+<p>
+It creates a multiline line textbox. 
+The constructor takes as arguments the text to be set, X and Y 
+coordinates, width and height, the parent in which its to be added. 
+</p>
+<pre class="wiki">class TextBox(wx.TextCtrl):
+    controller = None
+    def __init__(self,text,X,Y,width,height,cntrl):
+        self.controller=wx.TextCtrl(cntrl.panel, -1, text,  (X,Y), wx.Size(width, height) , style=wx.TE_MULTILINE)
+
+</pre><p>
+The other functions in this class are:
+</p>
+<ol><li>setText - To set the text of textbox, takes as an argument the text which is to be set. 
+<pre class="wiki"> def setText(self,text):
+        self.controller.SetValue(text)
+        return True
+</pre></li></ol><ol start="2"><li>getText - To get the string currently held by the textbox.
+<pre class="wiki">def getText(self):
+        return self.controller.GetValue()
+</pre></li></ol><p>
+<strong>class <a class="missing wiki" href="http://10.1.0.140/trac/wiki/PasswordBox" rel="nofollow">PasswordBox?</a></strong>:<br>
+It creates a textbox with font set to password bullets. 
+The constructor takes as arguments the text to be set, X and Y 
+coordinates, width and height, the parent in which its to be added. 
+Initially we pass an empty string into this widget.  
+</p>
+<pre class="wiki">class PasswordBox(wx.TextCtrl):
+    controller = None
+    def __init__(self,text,X,Y,width,height,cntrl):
+        self.controller=wx.TextCtrl(cntrl.panel, -1, text,  (X,Y), wx.Size(width, height) , style=wx.TE_PASSWORD)
+</pre><p>
+The other functions in this class are:
+</p>
+<ol><li>setText - To set the text of textbox, takes as an argument the text which is to be set. 
+<pre class="wiki"> def setText(self,text):
+        self.controller.SetValue(text)
+        return True
+</pre></li></ol><ol start="2"><li>getText - To get the string currently held by the textbox.
+<pre class="wiki">def getText(self):
+        return self.controller.GetValue()
+</pre></li></ol><p>
+<strong>class Label</strong>:<br>
+It creates a <a class="missing wiki" href="http://10.1.0.140/trac/wiki/StaticText" rel="nofollow">StaticText?</a> widget. It takes the text to be displayed, XY coordinates, size and parent for the widget as an argument.
+</p>
+<pre class="wiki">class Label(wx.StaticText):
+    controller = None
+    def __init__(self,text,X,Y,width,height,cntrl):
+        self.controller=wx.StaticText(cntrl.panel, -1,text,(X,Y),wx.Size(width,height))
+</pre><p>
+The other function in this class is setLabel, which sets the Text to another value:
+</p>
+<pre class="wiki">def setLabel(self,text):
+        self.controller.SetLabel(text)
+</pre><p>
+<strong>class <a class="missing wiki" href="http://10.1.0.140/trac/wiki/ComboBox" rel="nofollow">ComboBox?</a></strong>:<br>
+It creates a dropdown list (combobox) having a list of items to select 
+from. 
+The constructor takes as arguments the text to be set, a list of choices
+ to be displayed, X and Y coordinates, width and height, the parent in 
+which its to be added. 
+</p>
+<pre class="wiki">class ComboBox(wx.ListBox):
+     controller=None
+     def __init__(self,value,choices,X,Y,width,height,cntrl):
+         self.controller=wx.ComboBox(cntrl.panel, -1,value,(X,Y),wx.Size(width,height),style=wx.CB_READONLY)
+         self.controller.SetItems(choices)
+</pre><p>
+The <a class="missing wiki" href="http://10.1.0.140/trac/wiki/SetItems" rel="nofollow">SetItems?</a>() is used to bind the item list to the dropdown menu.
+</p>
+<p>
+The other function in this class is Selected(), which returns the value of currently selected item:
+</p>
+<pre class="wiki"> def Selected(self):
+         return self.controller.GetValue()
+</pre><p>
+<strong>class <a class="wiki" href="http://10.1.0.140/trac/wiki/CheckBox">CheckBox</a></strong>:<br>
+It creates a Checkbox which can be toggled as checked or unchecked. 
+The constructor takes as arguments the text to be displayed with 
+checkbox, X and Y coordinates, width and height, the parent in which its
+ to be added. 
+</p>
+<pre class="wiki">class CheckBox(wx.CheckBox):
+    controller = None
+    def __init__(self,title,X,Y,width,height,cntrl):
+        self.controller=wx.CheckBox(cntrl.panel, -1, title, (X,Y),wx.Size(width, height))
+    
+   
+</pre><p>
+It has functions to both set and get the box value
+</p>
+<pre class="wiki"> def setCheckState(self,value):
+        self.controller.SetValue(value)
+           
+    def getCheckState(self):
+        return self.controller.IsChecked()
+</pre><p>
+<strong>class <a class="wiki" href="http://10.1.0.140/trac/wiki/RadioButton">RadioButton</a></strong>:<br>
+It creates a <a class="wiki" href="http://10.1.0.140/trac/wiki/RadioButton">RadioButton</a>
+ which can be toggled as checked or unchecked. 
+The constructor takes as arguments the text to be displayed with 
+radiobutton, X and Y coordinates, width and height, the parent in which 
+its to be added. 
+</p>
+<pre class="wiki">class RadioButton(wx.RadioButton):
+    controller = None
+    def __init__(self,title,X,Y,width,height,cntrl):
+        self.controller=wx.RadioButton(cntrl.panel, -1, title, (X,Y),wx.Size(width, height))
+</pre><p>
+It has functions to both set radio value and check if a particular radio button is on
+</p>
+<pre class="wiki">def setChecked(self,value):
+        self.controller.SetValue(value)
+
+def isChecked(self):
+        return self.controller.GetValue()
+</pre><p>
+<strong>class <a class="missing wiki" href="http://10.1.0.140/trac/wiki/ButtonGroup" rel="nofollow">ButtonGroup?</a></strong>:<br>
+It groups the radiobuttons together so that only one button in a group can remain active at a time. 
+The constructor takes as arguments the parent in which its to be added.   
+</p>
+<pre class="wiki">class ButtonGroup(wx.RadioButton):
+    controller = []
+    cntrl = None
+    selected_index = None
+    
+    def __init__(self,cntrl):
+         self.cntrl = cntrl
+</pre><p>
+The function addButtons iterates over a list of radiobuttons passed to it and adds them one by one into the group.
+</p>
+<pre class="wiki">def addButtons(self,radiolist):
+         for i in range(1,len(radiolist)):
+               self.controller.append(radiolist[i])
+        
+</pre><p>
+getValue() returns the selected radiobutton back.
+</p>
+<pre class="wiki">   def getValue(self):
+        for i in range(len(self.controller)):
+            if(self.controller[i].GetValue()):
+                return self.controller[i].label
+        return None
+</pre><p>
+<strong>class Slider</strong>:<br>
+It creates a slider widget. It takes the start, minimum, maximum, XY coordinates, size and widgets parent as argument. 
+</p>
+<pre class="wiki">class Slider(wx.Slider):
+        controller=None
+        def __init__(self,X,Y,width,height,cntrl):
+           self.controller=wx.Slider(cntrl.panel,-1,0,0,10,(X,Y),wx.Size(width,height),style=wx.SL_HORIZONTAL)
+            
+        def setRange(self,fromValue,toValue):
+            self.controller.SetMin(fromValue)
+            self.controller.SetMax(toValue)
+</pre><p>
+It has a function getValue() that returns the current value of the slider.
+</p>
+<pre class="wiki">def getValue(self):
+            return self.controller.GetValue()
+</pre><p>
+<strong>class Cld</strong>:<br>
+It creates a calendar widget that lets us choose a date from it. It 
+takes as argument XY position, width, height and parent for the widget.
+</p>
+<p>
+It also has a function getValue that returns the currently selected date.
+</p>
+<pre class="wiki">class Cld(wx.calendar.CalendarCtrl):
+       controller=None
+       def __init__(self,X,Y,width,height,cntrl):
+            self.controller=wx.calendar.CalendarCtrl(cntrl.panel,-1,wx.DateTime_Now(),(X,Y),wx.Size(width,height),style=wx.calendar.CAL_SHOW_HOLIDAYS)
+           
+def getValue(self):
+       return self.controller.GetDate()
+</pre></div>
+        
+        
+      </div>
+      
+    <div id="attachments">
+    </div>
+
+          <div class="buttons">
+              <form method="get" action="/trac/wiki/AbhisaarSharma" id="modifypage">
+                <div>
+                  <input name="action" value="edit" type="hidden">
+                      <input value="Edit this page" type="submit">
+                </div>
+              </form>
+                <form method="get" action="/trac/attachment/wiki/AbhisaarSharma/" id="attachfile">
+  <div>
+    <input name="action" value="new" type="hidden">
+    <input name="attachfilebutton" value="Attach file" type="submit">
+  </div>
+</form>
+          </div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="http://10.1.0.140/trac/wiki/AbhisaarSharma?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" xml:lang="en" lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="AbhisaarSharma_files/trac_logo_mini.png" alt="Trac Powered" height="30" width="107"></a>
+      <p class="left">Powered by <a href="http://10.1.0.140/trac/about"><strong>Trac 0.12.4</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the Trac open source project at<br><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+  
+</body></html>

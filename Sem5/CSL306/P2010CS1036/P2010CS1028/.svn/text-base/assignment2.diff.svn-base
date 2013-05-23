@@ -1,0 +1,108 @@
+Index: textbox.py
+===================================================================
+--- textbox.py	(revision 103)
++++ textbox.py	(working copy)
+@@ -1,12 +1,47 @@
+ #!/usr/bin/python
+ import wx
+ 
++class DialogNew(wx.Frame):
++  
++    def __init__(self, parent, title):
++        super(DialogNew, self).__init__(parent, title=title,size=(400, 100))  
++        self.Interface()
++        self.Centre()
++        self.Show()     
++        
++    def Interface(self):
++        panel = wx.Panel(self)
++        panel.SetBackgroundColour("#008080")
++        verticalbox = wx.BoxSizer(wx.VERTICAL)
++        wxPython = wx.Button(panel, label='wxPython', size=(80, 30))
++        pyQT = wx.Button(panel, label='pyQT', size=(80, 30))
++        exit = wx.Button(panel, label='Exit', size=(80, 30))
++        horizontalbox = wx.BoxSizer(wx.HORIZONTAL)
++        horizontalbox.Add(wxPython,proportion=1)
++        horizontalbox.Add(pyQT,proportion=1)
++        horizontalbox.Add(exit,proportion=1)
++        verticalbox.Add(horizontalbox, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=30)
++        panel.SetSizer(verticalbox)
++        
++	self.Bind(wx.EVT_BUTTON, self.OnClickwxPython, id=wxPython.GetId())
++	self.Bind(wx.EVT_BUTTON, self.OnClickpyQT, id=pyQT.GetId())
++	self.Bind(wx.EVT_BUTTON, self.OnClick, id=exit.GetId()) 
++
++    def OnClickwxPython(self,event):
++	self.Close()
++	Dialog(None, title='Text Box And Button')
++
++    def OnClickpyQT(self,event):
++	self.Close()
++	import textAndButton
++	
++    def OnClick(self,event):
++	self.Close()
++
+ class Dialog(wx.Frame):
+   
+     def __init__(self, parent, title):
+-        super(Dialog, self).__init__(parent, title=title, 
+-            size=(400, 100))
+-            
++        super(Dialog, self).__init__(parent, title=title, size=(400, 100))
+         self.Interface()
+         self.Centre()
+         self.Show()     
+@@ -21,13 +56,18 @@
+         verticalbox.Add(horizontalbox1, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10)
+         verticalbox.Add((-1, 9))
+         horizontalbox2 = wx.BoxSizer(wx.HORIZONTAL)
+-        button = wx.Button(panel, label='OK', size=(200, 30))
++        button = wx.Button(panel, label='Exit', size=(200, 30))
+         horizontalbox2.Add(button)
+         verticalbox.Add(horizontalbox2, flag=wx.ALIGN_CENTER|wx.CENTER, border=10)
+         panel.SetSizer(verticalbox)
++        
++	self.Bind(wx.EVT_BUTTON, self.OnClick, id=button.GetId()) 
++	
++    def OnClick(self,event):
++	self.Close()
+ 
+ if __name__ == '__main__':
+   
+     application = wx.App()
+-    Dialog(None, title='Text Box And Button')
++    DialogNew(None, title='Select The GUI')
+     application.MainLoop()
+Index: textAndButton.py
+===================================================================
+--- textAndButton.py	(revision 0)
++++ textAndButton.py	(revision 0)
+@@ -0,0 +1,27 @@
++#!/usr/bin/python
++
++import sys
++from PyQt4.QtGui import *
++
++app = QApplication(sys.argv)
++button = QPushButton("Button")
++button.show()
++
++window = QWidget()
++textBox = QLineEdit()
++
++
++layout = QVBoxLayout(window)
++layout.addWidget(textBox)
++layout.addWidget(button)
++
++
++window.resize(200,140)
++window.setWindowTitle("WindowTitle")
++window.show()
++sys.exit(app.exec_())
++
++
++
++
++

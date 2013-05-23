@@ -1,0 +1,98 @@
+Index: textbox_2.py
+===================================================================
+--- textbox_2.py	(revision 90)
++++ textbox_2.py	(working copy)
+@@ -3,27 +3,83 @@
+ 
+ class Box(wx.Frame):
+   
+-    def __init__(widget, parent, head):									
+-        super(Box, widget).__init__(parent, title=head, size=(300, 80))
++    def __init__(self, parent, head):									
++        super(Box, self).__init__(parent, title=head, size=(300, 80))
+             
+-        widget.Interface()
+-        widget.Centre()
+-        widget.Show()     
++        self.Interface()
++        self.Centre()
++        self.Show()     
+         
+-    def Interface(widget):
++    def Interface(self):
+        
+-        panel = wx.Panel(widget)
++        panel = wx.Panel(self)
++        panel.SetBackgroundColour("#360523")
++
+         vbox = wx.BoxSizer(wx.VERTICAL)
+         hbox = wx.BoxSizer(wx.HORIZONTAL)
++ 
+         tbox = wx.TextCtrl(panel)
++        button = wx.Button(panel, label='Exit', size=(80, 27))
++	self.Bind(wx.EVT_BUTTON, self.OnClick, id=button.GetId())  
++
+         hbox.Add(tbox, proportion=1)
++      	hbox.Add(button)
++
+         vbox.Add(hbox, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=20)
+-        button = wx.Button(panel, label='Button', size=(80, 27))
+-        hbox.Add(button)
++
+         panel.SetSizer(vbox)
+ 
++    def OnClick(self,event):
++	self.Close()
++
++class Dialog(wx.Frame):
++  
++    def __init__(self, parent, title):
++        super(Dialog, self).__init__(parent, title=title, size=(320, 60))
++            
++        self.Interface()
++        self.Centre()
++        self.Show()     
++        
++    def Interface(self):
++       
++        panel = wx.Panel(self)
++        panel.SetBackgroundColour("#770000")
++
++
++        verticalbox = wx.BoxSizer(wx.VERTICAL)
++        wxPython = wx.Button(panel, label='wxPython', size=(100, 30))
++        pyQt = wx.Button(panel, label='pyQt', size=(100, 30))
++        exit = wx.Button(panel, label='Exit', size=(100, 30))
++	self.Bind(wx.EVT_BUTTON, self.OnClick, id=exit.GetId())  
++	self.Bind(wx.EVT_BUTTON, self.OnClickWx, id=wxPython.GetId())
++	self.Bind(wx.EVT_BUTTON, self.OnClickQt, id=pyQt.GetId())
++
++        horizontalbox = wx.BoxSizer(wx.HORIZONTAL)
++
++        verticalbox.Add(horizontalbox, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10)
++
++
++        horizontalbox.Add(wxPython)
++        horizontalbox.Add(pyQt)
++        horizontalbox.Add(exit)
++
++        panel.SetSizer(verticalbox)
++
++    def OnClick(self,event):
++	self.Close()
++
++    def OnClickWx(self,event):
++	self.Close()
++	Box(None, head='Text box+Button')
++
++    def OnClickQt(self,event):
++	self.Close()
++	import textAndButton
++
++
+ if __name__ == '__main__':
+   
+     application = wx.App()
+-    Box(None, head='Text box+Button')
++    Dialog(None, title='Choose Your GUI')
+     application.MainLoop()

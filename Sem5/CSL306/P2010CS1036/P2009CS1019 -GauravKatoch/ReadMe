@@ -1,0 +1,61 @@
+xGUI version 2.0
+
+* Author:GauravKatoch
+* Version: 2.0
+* currently support absolute layout
+
+
+=== API Summary ===
+
+== GTK_Canvas : On it widget can be added ==
+class Canvas:
+    def __init__( id, title,width,height)
+    def show()
+    def add(widget)
+            
+
+== WIDGETS ==
+
+class LabelText:
+	def __init__(title,X,Y,width,height)    
+	def setTextSize(size)
+	
+class Button:
+    def __init__(title,X,Y,width,height)    
+    def clickListener(method)
+
+class TextArea:
+    def __init__(title,X,Y,width,height)
+    def setText(text)
+    def appendText(text)
+    def clear()
+
+class TextField:
+    def __init__(title,X,Y,width,height)
+    def setText(text)
+    def getText()
+
+class CheckBox:
+    def __init__(title,X,Y,width,height)
+    def setValue(value)
+    def getValue()
+
+
+class RadioGroup:
+    def __init__(width,height)
+    def addRadioButton(label,X,Y)
+    def getValue()
+    def setButtonTrue(pos)
+
+class ValueList:
+    def __init__(choices,X,Y,width,height,value="")
+    def getValue()
+
+class Slider:
+	def __init__(text,X,Y,width,height,_from,_to)
+	def getValue()
+
+class Dialog:
+	def __init__(title,text)
+	def show(width,height,title,text)
+	

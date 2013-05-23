@@ -1,0 +1,27 @@
+
+"""tt=[]
+p=[]
+for j in range(1,6):
+	list1=[]
+	for i in range(1,j*100):
+		rand=(random.random(),random.random())
+		list1.append(rand)
+#list1=[(0.1,0.1),(4000,2000),(4000,2000.000001),(9000,900),(0.5,0.5),(0.2,0.3),(0.3,0.1),(0.3,0.2),(-300,-0.01),(-30,0.0005)]
+	print "The Closest pair is : "
+	t1=time.time()
+	print(ClosestPair(list1))
+	t2=time.time()
+	tt.append(t2-t1)
+	p.append(j*100)
+#for i in extracted_points:
+#	pl.plot(i)
+#print t2-t1
+plt.ylabel("Time taken")
+plt.xlabel("No. of points")
+#tt.append(3)
+#tt.append(5)
+#p.append(8)
+#p.append(9)
+plt.plot(p,tt)
+plt.show()
+"""

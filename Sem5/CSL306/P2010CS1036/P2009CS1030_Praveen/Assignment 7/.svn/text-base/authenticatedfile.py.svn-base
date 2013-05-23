@@ -1,0 +1,17 @@
+import QT as anyGUI
+
+xwindow = anyGUI.Xwindow(1,'Assignment 4' ,510,300)
+checkbox1 = anyGUI.CheckBox("CheckBox1",10,45,215,15)
+checkbox2 = anyGUI.CheckBox("CheckBox2",10,70,215,15)
+checkbox1.setValue(True)
+xwindow.add(checkbox1)
+xwindow.add(checkbox2)
+textview = anyGUI.TextView("Demo text area",250,10,215,180)
+xwindow.add(textview)
+radiobutton=anyGUI.Radio(100, 50)
+radiobutton.addRadioButton("Radio1",10,95)
+radiobutton.addRadioButton("Radio2",120,95)
+xwindow.add(radiobutton)
+submitBtn = anyGUI.Button("Submit",200,200,120,30)
+xwindow.add(submitBtn)
+xwindow.show()

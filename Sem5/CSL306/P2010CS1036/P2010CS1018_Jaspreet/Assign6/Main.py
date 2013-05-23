@@ -1,0 +1,50 @@
+import NewWidgets as out
+
+"""def main():
+	win = out.CommonAPI("Change Password", 400, 400)		
+	T1 = win.CreateTextBox(200, 50 )
+	T2 = win.CreateTextBox(200, 100, True)
+	T3 = win.CreateTextBox(200, 150, True)
+	T4 = win.CreateTextBox(200, 200, True)
+	win.CreateLabel(50, 50, "Name")
+	win.CreateLabel(50, 100, "Old Password")
+	win.CreateLabel(50, 150, "New Password")
+	win.CreateLabel(50, 200, "Confirm Password")
+	button = win.CreateButton(200, 250, "Submit")
+	out.Connect(button, out.GetValues, [T1,T2,T3,T4])
+	#button.connect("clicked", out.GetValues, [T1,T2,T3,T4] )
+	win.CreateToggleButton(50, 300, 'ToggleButton');
+	win.CreateSlider(50, 350 )
+	win.CreateClock(200, 350)
+	#win.CreateProgressBar(50, 350)
+	win.CreateSpinButton(100, 300)
+	#win.CreateCalender(50, 350, 'Calendar')
+	#win.AddImage(50, 350, 'logo.jpg')
+	
+	win.CreateDialog("Hello")
+	win.Show()"""
+	
+if __name__ == "__main__":
+	api = out.CommonAPI("Unit Testing", 650, 650)
+	T1 = api.CreateTextBox(220,50, "FALSE")
+	T2 = passwd = api.CreateTextBox(220,80, "TRUE")
+	T3 = api.CreateTextBox(220,110, "TRUE")
+	T4 = api.CreateTextBox(220,140, "TRUE")
+	toggle = api.CreateToggleButton( 20,170, "Toggle Button")
+	api.CreateLabel(20, 50, "Enter username: ")
+	api.CreateLabel(20, 80, "Enter old password: ")
+	api.CreateLabel(20, 110, "Enter new password: ")
+	api.CreateLabel(20, 140, "Enter new password(repeat): ")
+	button = api.CreateButton(300, 170, "Submit")
+	button.connect("clicked", out.GetValues, [T1,T2,T3,T4] )
+	slider = api.CreateSlider(50,500)
+	i = out.CreateImage("logo.jpg")
+	image = api.AddImage(350,200,i)
+	area = api.CreateTextArea(50,230)
+	spin = api.CreateSpinButton(170,170)
+	progress = api.CreateProgressBar(50,480)
+	clok = api.CreateClock(550,580)
+	dialog = api.CreateDialogBox("Dialog Box")
+	#l = api.CreateList(120, 240, Students)
+	api.Show()
+

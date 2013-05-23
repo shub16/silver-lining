@@ -1,0 +1,14 @@
+Index: text.py
+===================================================================
+--- text.py	(revision 67)
++++ text.py	(working copy)
+@@ -25,5 +25,7 @@
+ 		self.connect("destroy",gtk.main_quit)
+ 		self.add(fixed)
+ 		self.show_all()
+-PyApp()
+-gtk.main()
++	def main(self):
++		gtk.main()
++win=PyApp()
++win.main()

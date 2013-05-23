@@ -1,0 +1,104 @@
+Index: Assignment_1.py
+===================================================================
+--- Assignment_1.py	(revision 44)
++++ Assignment_1.py	(working copy)
+@@ -5,54 +5,59 @@
+ import pygtk
+ pygtk.require('2.0')
+ import gtk
++choice=int(raw_input("Enter the choice:\n1 for running \"PyGTK\" code or 2 for running \"wxpython\" code:"))
+ 
+-class Textbox:
+-    def sample(self, widget, textbox):						#definfing function Sample (to be executed when the button is pressed)
+-        text = textbox.get_text()
+-        print "Entry contents: %s\n" % text
++if choice==1:
++	class Textbox:
++    		def sample(self, widget, 	textbox):						#definfing function Sample (to be executed when the button is pressed)
++        		text = textbox.get_text()
++        		print "Entry contents: %s\n" % text
+     
+-    def callback(self, widget, data=None):
+-      	print "The button - %s was pressed" % data
+-
+-    
+-    def __init__(self):
+-      
+-        window = gtk.Window(gtk.WINDOW_TOPLEVEL)				#Creating  a Window
+-        window.set_size_request(300, 200)
+-        window.set_title("Text-Box Window")					#Setting the title of the Window
+-        window.connect("delete_event", lambda w,e: gtk.main_quit())
+-
+-        hbox = gtk.HBox(True, 0)						#Adding a Horizontal Box
+-        window.add(hbox)
+-        hbox.show()
+-
+-        textbox = gtk.Entry()							#Creating the textbox 
+-        textbox.set_max_length(200)						#Setting the maximum length of input string to be entered in the textbox
+-        textbox.connect("activate", self.sample, textbox)
+-        textbox.set_text("type the text here")					#Default String to be displayed
+-        textbox.select_region(0, len(textbox.get_text()))
+-        hbox.pack_start(textbox, False, False, 0)
+-        textbox.show()
++   	 	def callback(self, widget, data=None):
++   	   		print "The button - %s was pressed" % data
++		
++   	 
++   	 	def __init__(self):
++   	   
++   	     		window = gtk.Window(gtk.WINDOW_TOPLEVEL)				#Creating  a Window
++   	     		window.set_size_request(300, 200)
++   	     		window.set_title("Text-Box Window")					#Setting the title of the Window
++   	     		window.connect("delete_event", lambda w,e: gtk.main_quit())
++	
++   	     		hbox = gtk.HBox(True, 0)						#Adding a Horizontal Box
++   	     		window.add(hbox)
++   	     		hbox.show()
++	
++   	     		textbox = gtk.Entry()							#Creating the textbox 
++   	     		textbox.set_max_length(200)						#Setting the maximum length of input string to be entered in the textbox
++   	     		textbox.connect("activate", self.sample, textbox)
++   	     		textbox.set_text("type the text here")					#Default String to be displayed
++   	     		textbox.select_region(0, len(textbox.get_text()))
++   	     		hbox.pack_start(textbox, False, False, 0)
++   	     		textbox.show()
+         
+-	button = gtk.Button(stock=gtk.STOCK_OK)					#Creating the Button 
+-	button.connect("clicked", self.callback, "OK")				#Setting the Stock to "OK" and specifying to call the function Callback when the button is pressed
+-	hbox.pack_start(button, True, True, 2)
+-        button.set_flags(gtk.CAN_DEFAULT)
+-        button.grab_default()
+-	button.show()
++			button = gtk.Button(stock=gtk.STOCK_OK)					#Creating the Button 
++			button.connect("clicked", self.callback, "OK")				#Setting the Stock to "OK" and specifying to call the function Callback when the button is pressed
++			hbox.pack_start(button, True, True, 2)
++        		button.set_flags(gtk.CAN_DEFAULT)
++        		button.grab_default()
++			button.show()
+         
+-        window.show()								#Displaying the Window
++        		window.show()								#Displaying the Window
+ 
+ 
+         
+-def main():
+-    gtk.main()
+-    return 0
++	def main():
++    		gtk.main()
++ 		return 0
+ 
+-if __name__ == "__main__":
+-    Textbox()
+-    main()
+-                                  
++	if __name__ == "__main__":
++    		Textbox()
++    		main()
++elif choice==2:
++	import Module_wx
++else:
++	print("wrong choice")		                                  
+         
+     
+         

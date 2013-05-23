@@ -1,0 +1,9 @@
+Documentation
+@Chirag Gupta 
+@Assignement 6
+
+Added SpinCtrl from wxpython. This widget is used to convert Fahrenheit to Celsius. You can increase the value of Fahrenheit temperature by using SpinCtrl Widget
+
+Added Slider from wxpython. When you slide the bar, the value of the Static Text label changes according to the value of the Slider Bar. This feature can be used
+by including the 'slider' python file and then using the slider class from it.
+

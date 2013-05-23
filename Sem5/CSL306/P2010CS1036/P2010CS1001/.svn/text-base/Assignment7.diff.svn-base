@@ -1,0 +1,1711 @@
+Index: Assignment7/AnyGUI_Group13/assign6_Nitish.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/assign6_Nitish.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/assign6_Nitish.py	(revision 0)
+@@ -0,0 +1,288 @@
++
++import gtk
++
++class myWindow(object):
++    parent = None
++    def __init__(self, title,X,Y,width,height):
++        id = None
++        #Initialize the Widget
++        self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
++        self.window.connect("destroy", gtk.main_quit)
++        self.window.set_title(title)
++        self.window.set_size_request(width,height)
++        # Create a Fixed Container
++        self.fixed = gtk.Fixed()
++        self.window.add(self.fixed)
++        self.fixed.show()
++
++
++    def show(self):
++        self.window.show()
++        gtk.main()
++        return
++
++    def close(self):pass
++
++
++
++
++class TextBox(object):
++    instance = None
++    buffer = gtk.TextBuffer()
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.instance = gtk.TextView(self.buffer)
++        self.instance.set_size_request(width,height) 
++        cntrl.fixed.put(self.instance, X, Y)            
++        self.instance.show()
++
++    def setText(self,text):
++        self.buffer.set_text(text)
++        return True
++
++    def appendText(self,text):
++        self.buffer.insert(self.buffer.get_end_iter(),text)
++        return True              
++
++    def clear(self):
++        self.buffer.set_text("")
++        return True
++
++class Button(object):
++    
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.instance = gtk.Button(title)
++        self.instance.set_size_request(width,height)
++        cntrl.fixed.put(self.instance,X,Y)            
++        self.instance.show()
++        
++	def buttonListener(self,method):   
++		self.instance.connect("clicked",method)
++		return True
++                
++                ''' WIDGETS: LabelText '''
++class Label(object):
++    def __init__(self,text,X,Y,width,height,cntrl):
++        self.instance = gtk.Label(text)
++        cntrl.fixed.put(self.instance, X, Y)   
++        self.instance.set_size_request(width,height)         
++        self.instance.show()
++
++
++''' WIDGETS: MyRadioGroup '''
++class ButtonGroup(object):
++    controller = []
++    cntrl = None
++    selected_index = None
++    
++    def __init__(self,cntrl):
++         self.cntrl = cntrl
++           
++    def addButtons(self,radiolist):
++         for i in range(1,len(radiolist)):
++               self.controller.append(radiolist[i])
++        
++
++    def getValue(self):
++        for i in range(len(self.controller)):
++            if(self.controller[i].GetValue()):
++                return self.controller[i].label
++        return None
++
++''' WIDGETS: RadioButton '''
++class RadioButton(object):
++    controller = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.controller = gtk.RadioButton(None, title)
++        self.controller.set_size_request(width,height)
++        self.controller.set_active(False)
++        cntrl.fixed.put(self.controller,X,Y)
++        self.controller.show()
++
++    def setChecked(self,value):
++        self.controller.set_active(value)
++
++    def isChecked(self):
++        return self.controller.GetValue()
++        
++class CheckBox(object):
++	controller = None
++	value=False
++	def __init__(self,title,X,Y,width,height,cntrl):
++		self.controller = gtk.CheckButton(title)
++		self.controller.set_size_request(width,height)
++		cntrl.fixed.put(self.controller, X,Y)
++		self.controller.show()
++		self.controller.set_active(self.value)
++	
++	
++	def setCheckState(self,value):   #True or False for checked
++		self.controller.set_active(value)
++            
++	def get_state(self):
++		self.controller.get_active()	
++		    
++'''
++class ListBox(object):
++	controller=None
++	instance=None
++	def __init__(self,title,X,Y,width,height,cntrl):
++		self.controller = gtk.OptionMenu()
++            self.controller.set_size_request(width,height)
++			menu = gtk.Menu()
++			for name in widget.choices:
++				item = gtk.MenuItem(name)
++				item.show()
++				menu.append(item)
++				#print "gis"
++			widget.controller.set_menu(menu)
++			widget.controller.show()
++			self.fixed.put(widget.controller,widget.position_X, widget.position_Y)
++
++	def on_changed(self,value):
++		self.controller.set_label(self.get_active_text()) 
++
++'''
++#class Slider(object):
++	#controller=None
++	#def __init__(self,X,Y,width,height,cntrl):
++		#self.controller = gtk.HScale()
++        #self.controller.set_range(0, 100)
++        #self.controller.set_increments(1, 10)
++        #self.controller.set_digits(0)
++        #self.controller.set_size_request(width, height)
++        #self.controller.connect("value-changed", self.on_changed)
++        #cntrl.fixed.put(sacle.controller, X, Y)
++        
++        #self.controller.show()
++		
++	#def setRange(self,start,end):
++		#self.controller.set_range(start,end)
++	
++		
++	#def getValue(self):
++		#self.controller.get()
++		
++class Calendar(object):
++	controller=None
++	widget=None
++	def __init__(self,X,Y,width,height,cntrl):
++		   self.controller=gtk.Calendar()
++		   cntrl.fixed.put(self.controller, X, Y)
++		   print "fu"
++		   self.controller.connect("day_selected", self.on_day_selected)
++		   #cntrl.fix.put(self.label, 40, 230)
++		   self.controller.show()
++		   
++	def on_day_selected(self, widget):
++		(year, month, day) = widget.get_date()
++		self.label.set_label(str(month) + "/" + str(day) + "/" + str(year))
++		   
++
++
++
++        
++    
++WindowPanel = myWindow('wxWindow by Abhisaar Sharma' ,50,50,350,250)
++      
++userLbl=Label("Name :",20,15,80,30,WindowPanel)
++OldPswdLbl=Label("Old Password",20,50,140,30,WindowPanel)
++NewPswdLbl=Label("New Password",20,85,160,30,WindowPanel)
++ReNwPsLbl=Label("Repeat Password",20,120,160,30,WindowPanel)
++usrtb=TextBox("",150,15,150,30,WindowPanel)
++#OldPstb=PasswordBox("",150,50,150,30,WindowPanel)
++#NewPstb=PasswordBox("",150,85,150,30,WindowPanel)
++#ReNewPstb=PasswordBox("",150,120,150,30,WindowPanel)
++    
++btn= Button("Submit",30,180,100,35,WindowPanel)    
++#btn.buttonListener(Submit)
++      
++#sld1=Slider(300,350,180,20,WindowPanel)
++#sld1.setRange(0,10)
++
++cal1=Calendar(240,140,240,140,WindowPanel) 
++if __name__ == '__main__':
++    WindowPanel.show()
++
++'''
++    #Functions bind to button events
++    def SubmitButtonClick(event):
++        report = " Your city is "+ valuelist.get_state()+"\n"
++        if(checkbox1.get_state()):
++            report = report + " you have read the code\n"
++        else:
++            report = report + " you have not read the code\n"
++
++        if(checkbox2.get_state()):
++            report = report + " you have read the documentation\n"
++        else:
++            report = report + " you have not read the documentation\n"
++
++        report = report + " you are "+rb1.get_state()+"\n"
++        report = report + " you need "+rb2.get_state()+"\n"
++
++        textarea.appendText("_______________________\n"+report+"\n\n")
++        return True 
++
++    def AboutButtonClick(event):
++        textarea.setText("Created by wxGUI -v1.0\nAuthor : Arink Verma\n\nhttp://10.1.0.140/trac/wiki/ArinkVerma\n")
++        return True
++
++
++	def call_method(event):
++            print ("\n Your Entered Data \n");
++            print ("****************************\n")
++            print ("Your Name :  "+ tb.getText());
++         #   print ("Your Favourite Tool-Kit is :  "+rbgrp.getValue())
++            if(ck1.getCheckState()==True):
++			   print ("You Love Animals")
++            if(ck2.getCheckState()==True):
++               print("You Love Birds")
++            print("Your Favourite Animal is : "+ listBox.Selected());
++			
++			
++    def exit_method(event):
++            print 'wxPython window made by Abhisaar Sharma'
++            return
++     
++    WindowPanel = myWindow('wxPython Window By Abhisaar Sharma' ,50,50,450,400)
++       
++    #Textbox
++    tb=TextBox(" dfsf ",100,15,150,30,WindowPanel)
++    Listlbl=Label("Your Favourite Animal",280,30,160,60,WindowPanel)
++    #Buttons
++    btn= Button("Print On Console",30,320,150,150,WindowPanel)
++    #btn.buttonListener(call_method)
++    
++    
++    
++    #Checkboxes
++    ck1=CheckBox("I Love Animals ",20,45,150,50,WindowPanel)
++    ck1.setCheckState(0)
++    ck2=CheckBox("I Love Birds ",150,45,150,50,WindowPanel)
++    ck2.setCheckState(2)
++	
++		
++	#Radios
++    rbgrp=ButtonGroup(WindowPanel)
++    
++    rb1=RadioButton("PyQT4",10,140,100,20,WindowPanel)
++    rb2=RadioButton("Wx-Python",10,160,100,20,WindowPanel)
++    rb3=RadioButton("PyGTK",10,180,100,20,WindowPanel)
++    rb4=RadioButton("Tkinter",10,200,100,20,WindowPanel)
++    
++    rlist=[rb1,rb2,rb3,rb4]
++    rbgrp.addButtons(rlist)
++    
++    rb4.setChecked(False)
++    
++    
++    #sld1=Slider(300,350,180,20,WindowPanel)
++    #sld1.setRange(0,10)
++    myList=["Elephant","Peacock","Bear","Lion","Tiger","Leopard","Dog","Cat","Wolf","Spider","Parrot","Nightingale"]
++    #listBox=ListBox("fuck off",250,80,180,190,WindowPanel)
++    
++    #listBox.addItems(myList)
++    cal1=Calendar(240,140,240,140,WindowPanel)
++    WindowPanel.show()
++    
++'''
+Index: Assignment7/AnyGUI_Group13/PyQT4_API.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/PyQT4_API.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/PyQT4_API.py	(revision 0)
+@@ -0,0 +1,199 @@
++import sys,os
++from PyQt4 import QtGui
++from PyQt4 import QtCore
++import os
++from functools import partial
++
++# myWindow Class to Create a WindowPanel which is the main Window,the parent of other widgets.
++class myWindow(QtGui.QWidget):
++        def __init__(self,title,x_pos,y_pos,width,height):
++            #app = QtGui.QApplication(sys.argv)            
++            super(myWindow,self).__init__()
++            self.setGeometry(x_pos,y_pos,width,height)
++            self.setWindowTitle(title)       
++
++#Close Method to close Window
++        def Close(self):
++            self.close()
++         
++#Show Method to Show the Window
++        def Show(self):
++            self.show()
++            #sys.exit(self.app.exec_())
++
++
++#Label Class to Create a Label Widget
++class Label(QtGui.QLabel):
++        def __init__(self,label,x_pos,y_pos,width,height,parent):
++            super(Label,self).__init__(label,parent)
++            self.setGeometry(x_pos,y_pos,width,height);
++
++        def setLabel(self,text):			
++            self.setText(text)
++
++#Button Class to Create a PushButton Widget
++class Button(QtGui.QPushButton):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(Button,self).__init__(parent)
++            self.setGeometry(x_pos,y_pos,width,height);
++            self.setText(title)
++			
++#Button Listener for PushButton
++        def buttonListener(self,call_method,*args):
++            self.clicked.connect(partial(call_method, *args))    # On clicking Button it calls the on_click method.
++       
++
++#CheckBox Class to Create the CheckBox Widget
++class CheckBox(QtGui.QCheckBox):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(CheckBox,self).__init__(parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++            self.setText(title)
++            self.setCheckState(0)
++
++#method to set the initial Check-State of the CheckBox
++        def setCheckState(self,state):
++            super(CheckBox,self).setCheckState(state)
++			
++#Method returns the current check state of the CheckBox
++        def getCheckState(self):
++            if self.checkState()==0:
++                return False
++            else :
++                return True
++
++#Class ButtonGroup to Create a  Widget Which will contaim a group of Buttons
++class ButtonGroup(QtGui.QButtonGroup):
++        def __init__(self,parent):
++            super(ButtonGroup,self).__init__(parent)
++            			
++#returns the Id of the Button Checked in the Button Group
++     	def getChecked(self):
++		    return self.checkedId()
++
++# returns the Text of the Button Checked in the Button Group
++        def getValue(self):
++            return (self.checkedButton()).text();
++				
++# Adds the Button to this Group
++        def addButtons(self,BtnList):
++            for i in range(len(BtnList)):
++                self.addButton(BtnList[i],i)
++	    
++        
++# Class RadioButton to create a RadioButton Widget
++class RadioButton(QtGui.QRadioButton):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(RadioButton,self).__init__(parent)
++            self.setText(title)
++            self.setGeometry(x_pos,y_pos,width,height)
++            
++#TextBox Class to create a TextBox Widget
++class TextBox(QtGui.QLineEdit):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(TextBox,self).__init__(title,parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++            self.setText(title)
++
++# returns the Text entered in the TextBox
++        def getText(self):
++            return self.text()
++
++# ListBox Class to Create a ListBox Widget.
++class ListBox(QtGui.QListWidget):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(ListBox,self).__init__(parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++
++# Adding Items to the ListBox
++        def addItems(self,myList):
++            m= self.count()
++            if(m==0):
++               for i in range(len(myList)):
++                    self.addItem(myList[i])		
++            
++# Get the Selected Item from the ListBox
++        def Selected(self):
++            if(len(self.selectedItems())>0):
++                return self.selectedItems()[0].text()
++            else :
++                return ""			
++		
++#Password Class to Create a Password Box Widget
++class PasswordBox(QtGui.QLineEdit):
++        def __init__(self,title,x_pos,y_pos,width,height,parent):
++            super(PasswordBox,self).__init__(title,parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++            self.setText(title)
++            self.setEchoMode(2)
++
++# Get the text entered in the password Box
++        def getText(self):
++            return self.text()
++
++# class for the calendar widget
++class Cld(QtGui.QCalendarWidget):
++
++    # create the calendar
++        def __init__(self,x_pos,y_pos,width,height,parent):
++            super(Cld,self).__init__(parent)
++            self.setGridVisible(True)
++            self.setGeometry(x_pos,y_pos,width,height)
++
++    # function to extract the value of the widget
++        def getValue(self):
++            return self.selectedDate().toString()
++	
++# class for the slider widget
++class Slider(QtGui.QSlider):
++
++        def __init__(self,x_pos,y_pos,width,height,parent):
++            super(Slider,self).__init__(QtCore.Qt.Horizontal,parent)
++            self.setFocusPolicy(QtCore.Qt.NoFocus)
++            self.setGeometry(x_pos,y_pos,width,height)
++
++# method to set the maximum and minimum Value of the slider
++        def setRange(self,fromValue,toValue):
++            self.setMinimum(fromValue)
++            self.setMaximum(toValue)
++
++        def getValue(self):
++            return self.value()
++
++
++#ComboBox Class to Create a ComboBox Widget
++
++class ComboBox(QtGui.QComboBox):
++        combo_string=""
++        def __init__(self,title,myList,x_pos,y_pos,width,height,parent):
++            super(ComboBox,self).__init__(parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++            self.connect(self, QtCore.SIGNAL('activated(QString)'), self.combo_chosen) 
++            self.addItems(myList)
++
++# It will set combo_string to the text of the selected item in the combobox
++        def combo_chosen(self, text):
++            self.combo_string =text
++  
++#  Selected method will return the Selected items in the ComboBox widget.
++        def Selected(self):
++            return self.combo_string
++
++# MenuBar Class to Create a MenuBar
++class MenuBar(QtGui.QMenuBar):
++
++        def __init__(self,x_pos,y_pos,width,height,parent):
++            super(MenuBar,self).__init__(parent)
++            self.setGeometry(x_pos,y_pos,width,height)
++            
++
++# addItems method to add Menu Items and its Action.
++        def addItems(self,menu_list,*args):
++            menu=[]
++            Action=[]
++            for i in range(len(menu_list)):
++                Action.append(QtGui.QAction(menu_list[i][1], self) )
++                Action[i].triggered.connect(menu_list[i][2])        		
++                menu.append(self.addMenu(menu_list[i][0]))
++                menu[i].addAction(Action[i])
++            
+Index: Assignment7/AnyGUI_Group13/Readme.pdf
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+
+Property changes on: Assignment7/AnyGUI_Group13/Readme.pdf
+___________________________________________________________________
+Added: svn:mime-type
+   + application/octet-stream
+
+Index: Assignment7/AnyGUI_Group13/tkGUI_adi.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/tkGUI_adi.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/tkGUI_adi.py	(revision 0)
+@@ -0,0 +1,623 @@
++
++import tkMessageBox
++import sys,os
++import Tkinter as root
++import Tkinter as tk
++import time
++import calendar
++
++try:
++    import Tkinter
++    import tkFont
++except ImportError: # py3k
++    import tkinter as Tkinter
++    import tkinter.font as tkFont
++
++import ttk
++
++
++
++
++class myWindow(object):
++    window = None
++    def __init__(self,title,X,Y,width,height):
++        self.window = root.Tk()
++        self.window.title(title)
++        
++        # get screen width and height
++        #ws = self.window.winfo_screenwidth()
++        #hs = self.window.winfo_screenheight()
++        # calculate position x, y
++        #x = (ws/2) - (width/2)    
++        #y = (hs/2) - (height/2)
++        self.window.geometry('%dx%d+%d+%d' % (width, height, X, Y))
++        
++        
++    def show(self):
++        self.window.mainloop()
++        return
++
++        
++''' WIDGETS: Button '''
++class Button(object):
++    controller = None
++    callbackMethod = None
++    Type = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = root.Button(frame, text=title,command= self.callbackMethod)
++        self.controller.pack(fill=root.BOTH, expand=1)
++
++    def buttonListener(self,method):
++        self.controller.config(command=method)
++        
++
++''' WIDGETS: TextArea '''
++class TextBox(object):
++    controller = None
++    callback = None
++    Type = None
++    def __init__(self,text,X,Y,width,height,cntrl):
++        if(self.controller == None):
++            self.text = text
++        else:
++            self.controller.delete(1.0, root.END)
++            self.controller.insert(root.INSERT,text)
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = root.Text(frame)
++        self.controller.pack(fill=root.BOTH, expand=1)
++        self.controller.insert(root.INSERT,text)
++
++    def getText(self):
++        if(self.controller == None):
++            return self.text
++        else:
++            return self.controller.get(1.0, root.END)
++
++    def setText(self,text):
++        self.controller.delete(1.0, root.END)
++        self.controller.insert(root.INSERT,text)
++
++
++    def clear(self):
++        self.controller.delete(1.0, root.END)
++        return True
++
++
++''' WIDGETS: Label '''
++class Label(object):
++    controller = None
++    Type = None
++    v=''
++    label_var = 0
++    def __init__(self,text,X,Y,width,height,cntrl):
++        self.v=text
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = root.Label(frame, text=self.v)
++        self.controller.pack(fill=root.BOTH, expand=1)
++
++    def setLabel(self,text):
++        self.controller.config(text=text)
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++def get_calendar(locale, fwday):
++    # instantiate proper calendar class
++    if locale is None:
++        return calendar.TextCalendar(fwday)
++    else:
++        return calendar.LocaleTextCalendar(fwday, locale)
++
++class Calendar(ttk.Frame):
++    # XXX ToDo: cget and configure
++
++    datetime = calendar.datetime.datetime
++    timedelta = calendar.datetime.timedelta
++
++    def __init__(self, master=None, **kw):
++        """
++        WIDGET-SPECIFIC OPTIONS
++
++            locale, firstweekday, year, month, selectbackground,
++            selectforeground
++        """
++        # remove custom options from kw before initializating ttk.Frame
++        fwday = kw.pop('firstweekday', calendar.MONDAY)
++        year = kw.pop('year', self.datetime.now().year)
++        month = kw.pop('month', self.datetime.now().month)
++        locale = kw.pop('locale', None)
++        sel_bg = kw.pop('selectbackground', '#ecffc4')
++        sel_fg = kw.pop('selectforeground', '#05640e')
++
++        self._date = self.datetime(year, month, 1)
++        self._selection = None # no date selected
++
++        ttk.Frame.__init__(self, master, **kw)
++
++        self._cal = get_calendar(locale, fwday)
++
++        self.__setup_styles()       # creates custom styles
++        self.__place_widgets()      # pack/grid used widgets
++        self.__config_calendar()    # adjust calendar columns and setup tags
++        # configure a canvas, and proper bindings, for selecting dates
++        self.__setup_selection(sel_bg, sel_fg)
++
++        # store items ids, used for insertion later
++        self._items = [self._calendar.insert('', 'end', values='')
++                            for _ in range(6)]
++        # insert dates in the currently empty calendar
++        self._build_calendar()
++
++        # set the minimal size for the widget
++        self._calendar.bind('<Map>', self.__minsize)
++
++    def __setitem__(self, item, value):
++        if item in ('year', 'month'):
++            raise AttributeError("attribute '%s' is not writeable" % item)
++        elif item == 'selectbackground':
++            self._canvas['background'] = value
++        elif item == 'selectforeground':
++            self._canvas.itemconfigure(self._canvas.text, item=value)
++        else:
++            ttk.Frame.__setitem__(self, item, value)
++
++    def __getitem__(self, item):
++        if item in ('year', 'month'):
++            return getattr(self._date, item)
++        elif item == 'selectbackground':
++            return self._canvas['background']
++        elif item == 'selectforeground':
++            return self._canvas.itemcget(self._canvas.text, 'fill')
++        else:
++            r = ttk.tclobjs_to_py({item: ttk.Frame.__getitem__(self, item)})
++            return r[item]
++
++    def __setup_styles(self):
++        # custom ttk styles
++        style = ttk.Style(self.master)
++        arrow_layout = lambda dir: (
++            [('Button.focus', {'children': [('Button.%sarrow' % dir, None)]})]
++        )
++        style.layout('L.TButton', arrow_layout('left'))
++        style.layout('R.TButton', arrow_layout('right'))
++
++    def __place_widgets(self):
++        # header frame and its widgets
++        hframe = ttk.Frame(self)
++        lbtn = ttk.Button(hframe, style='L.TButton', command=self._prev_month)
++        rbtn = ttk.Button(hframe, style='R.TButton', command=self._next_month)
++        self._header = ttk.Label(hframe, width=15, anchor='center')
++        # the calendar
++        self._calendar = ttk.Treeview(show='', selectmode='none', height=7)
++
++        # pack the widgets
++        hframe.pack(in_=self, side='top', pady=4, anchor='center')
++        lbtn.grid(in_=hframe)
++        self._header.grid(in_=hframe, column=1, row=0, padx=12)
++        rbtn.grid(in_=hframe, column=2, row=0)
++        self._calendar.pack(in_=self, expand=1, fill='both', side='bottom')
++
++    def __config_calendar(self):
++        cols = self._cal.formatweekheader(3).split()
++        self._calendar['columns'] = cols
++        self._calendar.tag_configure('header', background='grey90')
++        self._calendar.insert('', 'end', values=cols, tag='header')
++        # adjust its columns width
++        font = tkFont.Font()
++        maxwidth = max(font.measure(col) for col in cols)
++        for col in cols:
++            self._calendar.column(col, width=maxwidth, minwidth=maxwidth,
++                anchor='e')
++
++    def __setup_selection(self, sel_bg, sel_fg):
++        self._font = tkFont.Font()
++        self._canvas = canvas = Tkinter.Canvas(self._calendar,
++            background=sel_bg, borderwidth=0, highlightthickness=0)
++        canvas.text = canvas.create_text(0, 0, fill=sel_fg, anchor='w')
++
++        canvas.bind('<ButtonPress-1>', lambda evt: canvas.place_forget())
++        self._calendar.bind('<Configure>', lambda evt: canvas.place_forget())
++        self._calendar.bind('<ButtonPress-1>', self._pressed)
++
++    def __minsize(self, evt):
++        width, height = self._calendar.master.geometry().split('x')
++        height = height[:height.index('+')]
++        self._calendar.master.minsize(width, height)
++
++    def _build_calendar(self):
++        year, month = self._date.year, self._date.month
++
++
++        # update header text (Month, YEAR)
++        header = self._cal.formatmonthname(year, month, 0)
++        self._header['text'] = header.title()
++
++        # update calendar shown dates
++        cal = self._cal.monthdayscalendar(year, month)
++        for indx, item in enumerate(self._items):
++            week = cal[indx] if indx < len(cal) else []
++            fmt_week = [('%02d' % day) if day else '' for day in week]
++            self._calendar.item(item, values=fmt_week)
++
++    def _show_selection(self, text, bbox):
++        """Configure canvas for a new selection."""
++        x, y, width, height = bbox
++
++        textw = self._font.measure(text)
++
++        canvas = self._canvas
++        canvas.configure(width=width, height=height)
++        canvas.coords(canvas.text, width - textw, height / 2 - 1)
++        canvas.itemconfigure(canvas.text, text=text)
++        canvas.place(in_=self._calendar, x=x, y=y)
++
++    # Callbacks
++
++    def _pressed(self, evt):
++        """Clicked somewhere in the calendar."""
++        x, y, widget = evt.x, evt.y, evt.widget
++        item = widget.identify_row(y)
++        column = widget.identify_column(x)
++
++        if not column or not item in self._items:
++            # clicked in the weekdays row or just outside the columns
++            return
++
++        item_values = widget.item(item)['values']
++        if not len(item_values): # row is empty for this month
++            return
++
++        text = item_values[int(column[1]) - 1]
++        if not text: # date is empty
++            return
++
++        bbox = widget.bbox(item, column)
++        if not bbox: # calendar not visible yet
++            return
++
++        # update and then show selection
++        text = '%02d' % text
++        self._selection = (text, item, column)
++        self._show_selection(text, bbox)
++
++    def _prev_month(self):
++        """Updated calendar to show the previous month."""
++        self._canvas.place_forget()
++
++        self._date = self._date - self.timedelta(days=1)
++        self._date = self.datetime(self._date.year, self._date.month, 1)
++        self._build_calendar() # reconstuct calendar
++
++    def _next_month(self):
++        """Update calendar to show the next month."""
++        self._canvas.place_forget()
++
++        year, month = self._date.year, self._date.month
++        self._date = self._date + self.timedelta(
++            days=calendar.monthrange(year, month)[1] + 1)
++        self._date = self.datetime(self._date.year, self._date.month, 1)
++        self._build_calendar() # reconstruct calendar
++
++    # Properties
++
++    def getValue(self):
++        """Return a datetime representing the current selected date."""
++        if not self._selection:
++            return None
++
++        year, month = self._date.year, self._date.month
++        return self.datetime(year, month, int(self._selection[0]))
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++''' WIDGETS: CheckBox '''
++class CheckBox(object):
++    controller = None
++    value = False
++    Type = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.value=root.IntVar()
++        self.controller = root.Checkbutton(frame, text=title,variable=self.value)
++        #widget.controller.pack(fill=root.BOTH, expand=1)
++        self.controller.grid(sticky=root.W)
++
++    def setCheckState(self,value):
++        if(value):
++            self.controller.select()
++        else:
++            self.controller.deselect()
++
++    def getCheckState(self):
++        if(self.value.get()== 1):
++            return True
++        else:
++            return False
++
++ 
++''' WIDGETS: RadioGroup '''
++class ButtonGroup(object):
++    controller = []
++    cntrl = None
++    selected_index = None
++    
++    def __init__(self,cntrl):
++         self.cntrl = cntrl
++           
++    def addButtons(self,radiolist):
++         for i in range(1,len(radiolist)):
++               self.controller.append(radiolist[i])
++
++
++    def setButtonTrue(self,index):
++        button_controller = self.controller[index]
++        button_controller.select()
++globalvar=0
++
++class RadioButton(object):
++    controller = None
++    labels=""
++    def __init__(self,title,X,Y,width,height,cntrl):
++	V=root.IntVar()
++        V=0
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        global globalvar
++        self.controller= root.Radiobutton(frame, text=title,variable=V,value=globalvar)
++	globalvar=globalvar+1
++        self.controller.pack(fill=root.BOTH, expand=1)
++        self.controller.grid(sticky=root.W)
++        self.labels=title
++
++
++
++    def isChecked(self):
++        for i in range(len(self.controller)):
++            if(self.value.get()==i):
++                return self.labels[i]
++        return None
++
++    def setChecked(self,index):
++        button_controller = self.controller[index]
++        button_controller.select()
++
++
++
++
++''' WIDGETS: ValueList '''
++class ComboBox(object):
++    controller = None
++    Type = None
++    list_var = 0
++    list_var = 1
++
++    def __init__(self,title,value,X,Y,width,height,cntrl):
++        array = ['']
++        self.list_var = root.StringVar()
++        self.list_var.set(value)
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.list_var1 = root.StringVar()
++        array[0]=title
++        array=array+value
++        self.list_var1.set(array[0])
++
++        self.controller = apply(root.OptionMenu, (frame, self.list_var1) + tuple(array))
++        self.controller.pack(fill=root.BOTH, expand=1)
++
++
++    def addItems(self,choices):
++         self.controller.SetItems(choices)
++
++    def Selected(self):
++         return self.list_var1.get()
++
++class PasswordBox:
++    controller = None
++    callback = None
++    Type= "Password"
++    def __init__(self,text,X,Y,width,height,cntrl):
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = root.Entry(frame, show="*")
++        self.controller.pack(fill=root.BOTH, expand=1)
++        self.controller.insert(root.INSERT,text)
++
++    def getText(self):
++        return self.controller.get()
++
++    def setText(self,text):
++        self.controller.delete(1.0, root.END)
++        self.controller.insert(root.INSERT,text)
++
++
++
++class Slider:
++    controller = None
++    callback = None
++    Type = "Slider"
++    def __init__(self,X,Y,width,height,cntrl):
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = root.Scale(frame, from_=0, to=10, orient=root.HORIZONTAL)
++        self.controller.pack()
++    def getValue(self):
++        return self.controller.get()
++    def setRange(self,a,b):
++        self.controller.config(from_=a)
++        self.controller.config(to=b)
++
++
++class Cld:
++    controller = None
++    callback = None
++    Type = "Slider"
++    def __init__(self,X,Y,width,height,cntrl):
++        frame = root.Frame(cntrl.window, width=width,height=height)
++        frame.pack_propagate(0) # don't shrink
++        frame.pack()
++        frame.place(x=X,y=Y)
++        self.controller = Calendar(frame,firstweekday=calendar.SUNDAY)
++        self.controller.pack(expand=1, fill='both')
++    def getValue(self):
++        return self.controller.getValue()
++
++    
++
++
++
++
++
++
++def IsValidPswd(newps1, newps2):
++    if newps1 != newps2:
++       print(" Password Error !  Passwords donot match! ")
++       return False
++    
++    if(len(newps1)<=6):               # Check the length of the password
++       print(" Password Error ! Password Length should be more than 6. ")
++       return False    
++    
++    if(str(newps1).isalnum()):             #checks if password conatins only alpha or numeric fiels
++        
++        if(str(newps1).isalpha()):          # invalidates if  password contains only alphabets not a combination.
++            print(" Password Error ! Password cannot be only alphabet.Try combination! ")
++            return False   
++        
++        elif(str(newps1).isdigit()):	    #Invalidates if password contains only digits not a combination.
++            print(" Password Error ! Password cannot be only digit.Try combination! ")
++            return False
++        
++        else :			                     
++            print ("Password Successfully Changed. !");
++            return True
++    else:                                            # Invalidates if password have non-alphanumeric characters.
++       print (" Password Error ! Password should contain only alphabets and digits.");
++       return False
++
++
++
++
++
++
++
++
++
++
++
++if __name__ == '__main__':
++
++        def call_method():
++            print ("\n Your Entered Data \n");
++            print ("****************************\n")
++            print ("Your Name :  "+ tb.getText());
++         #   print ("Your Favourite Tool-Kit is :  "+rbgrp.getValue())
++            if(ck1.getCheckState()==True):
++			   print ("You Love Animals")
++            if(ck2.getCheckState()==True):
++               print("You Love Birds")
++            print("Your Favourite Animal is : "+ ComboBox.Selected());
++			
++			
++        def exit_method():
++            print 'wxPython window made by Abhisaar Sharma'
++            return
++        
++        
++        WindowPanel = myWindow('wxPython Window By Abhisaar Sharma' ,50,50,750,600)
++        
++        #Labels
++        nameLbl=Label("Your Name :",20,15,80,30,WindowPanel)
++        toollbl=Label("Your Favourite Tool-Kit",15,100,140,40,WindowPanel)
++        Listlbl=Label("Your Favourite Animal",280,30,160,60,WindowPanel)
++        
++        
++        #Checkboxes
++        ck1=CheckBox("I Love Animals ",20,45,150,50,WindowPanel)
++        ck1.setCheckState(0)
++        ck2=CheckBox("I Love Birds ",150,45,150,50,WindowPanel)
++        ck2.setCheckState(2)
++        
++        
++        
++        #Radios
++        rbgrp=ButtonGroup(WindowPanel)
++        
++        rb1=RadioButton("PyQT4",10,140,100,20,WindowPanel)
++        rb2=RadioButton("Wx-Python",10,160,100,20,WindowPanel)
++        rb3=RadioButton("PyGTK",10,180,100,20,WindowPanel)
++        rb4=RadioButton("Tkinter",10,200,100,20,WindowPanel)
++        
++        rlist=[rb1,rb2,rb3,rb4]
++        rbgrp.addButtons(rlist)
++        
++#        rb1.setChecked(True)
++        
++        #Textbox
++        tb=TextBox("",100,15,150,30,WindowPanel)
++        
++        #Listbox
++        myList=["Elephant","Peacock","Bear","Lion","Tiger","Leopard","Dog","Cat","Wolf","Spider","Parrot","Nightingale"]
++        ComboBox=ComboBox("Animals",myList,250,80,150,30,WindowPanel)
++   #     listBox.addItems(myList)
++        
++        #Buttons
++        btn= Button("Print On Console",30,320,150,50,WindowPanel)
++        btn.buttonListener(call_method)
++        Exit_btn= Button("Info",260,320,150,50,WindowPanel)
++        Exit_btn.buttonListener(exit_method)
++        sld1=Slider(150,390,120,40,WindowPanel)
++#        cal=Calendar(400,500,300,300,WindowPanel)
++        pwd=PasswordBox('',300,390,120,20,WindowPanel)
++        
++        calend=Cld(450,290,220,240,WindowPanel)
++        WindowPanel.show()
++
+Index: Assignment7/AnyGUI_Group13/wxabhi.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/wxabhi.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/wxabhi.py	(revision 0)
+@@ -0,0 +1,182 @@
++import wx
++import wx.calendar
++
++class myWindow(wx.Frame):
++    parent = None
++    def __init__(self,title,X,Y,width,height):
++        self.app = wx.App(False)
++        wx.Frame.__init__(self, self.parent, 1, title, (X,Y),wx.Size(width, height))
++        self.panel = wx.Panel(self, -1)
++
++    def show(self):
++        self.Show(True)
++        self.Centre()
++        self.app.MainLoop()
++        return
++    
++    def close(self):
++        self.Close()
++            
++''' WIDGETS: TextBox '''
++class TextBox(wx.TextCtrl):
++    controller = None
++    def __init__(self,text,X,Y,width,height,cntrl):
++        self.controller=wx.TextCtrl(cntrl.panel, -1, text,  (X,Y), wx.Size(width, height) , style=wx.TE_MULTILINE)
++    
++    
++    def setText(self,text):
++        self.controller.SetValue(text)
++        return True
++    
++    def getText(self):
++        return self.controller.GetValue()
++        
++''' WIDGETS: PasswordBox '''
++class PasswordBox(wx.TextCtrl):
++    controller = None
++    def __init__(self,text,X,Y,width,height,cntrl):
++        self.controller=wx.TextCtrl(cntrl.panel, -1, text,  (X,Y), wx.Size(width, height) , style=wx.TE_PASSWORD)
++    
++    def setText(self,text):
++        self.controller.SetValue(text)
++        return True
++    
++    def getText(self):
++        return self.controller.GetValue()
++
++''' WIDGETS: LABEL '''
++class Label(wx.StaticText):
++    controller = None
++    def __init__(self,text,X,Y,width,height,cntrl):
++        self.controller=wx.StaticText(cntrl.panel, -1,text,(X,Y),wx.Size(width,height))
++    
++    def setLabel(self,text):
++        self.controller.SetLabel(text)
++
++''' WIDGETS: Button '''
++class Button(wx.Button):
++    controller = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.controller=wx.Button(cntrl.panel, -1, title, (X,Y), wx.Size(width,height) )
++            
++    def buttonListener(self,method):
++        self.controller.Bind(wx.EVT_BUTTON, method)
++        
++''' WIDGETS: CheckBox '''
++class CheckBox(wx.CheckBox):
++    controller = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.controller=wx.CheckBox(cntrl.panel, -1, title, (X,Y),wx.Size(width, height))
++    
++    def setCheckState(self,value):
++        self.controller.SetValue(value)
++           
++    def getCheckState(self):
++        return self.controller.IsChecked()
++
++
++''' WIDGETS: MyRadioGroup '''
++class ButtonGroup(wx.RadioButton):
++    controller = []
++    cntrl = None
++    selected_index = None
++    
++    def __init__(self,cntrl):
++         self.cntrl = cntrl
++           
++    def addButtons(self,radiolist):
++         for i in range(1,len(radiolist)):
++               self.controller.append(radiolist[i])
++        
++
++    def getValue(self):
++        for i in range(len(self.controller)):
++            if(self.controller[i].GetValue()):
++                return self.controller[i].label
++        return None
++
++''' WIDGETS: RadioButton '''
++class RadioButton(wx.RadioButton):
++    controller = None
++    def __init__(self,title,X,Y,width,height,cntrl):
++        self.controller=wx.RadioButton(cntrl.panel, -1, title, (X,Y),wx.Size(width, height))
++
++    def setChecked(self,value):
++        self.controller.SetValue(value)
++
++    def isChecked(self):
++        return self.controller.GetValue()
++
++''' WIDGETS: ComboBox '''
++class ComboBox(wx.ListBox):
++     controller=None
++     def __init__(self,value,choices,X,Y,width,height,cntrl):
++         self.controller=wx.ComboBox(cntrl.panel, -1,value,(X,Y),wx.Size(width,height),style=wx.CB_READONLY)
++         self.controller.SetItems(choices)
++         
++     def Selected(self):
++         return self.controller.GetValue()
++
++''' WIDGETS: Slider '''
++class Slider(wx.Slider):
++        controller=None
++        def __init__(self,X,Y,width,height,cntrl):
++           self.controller=wx.Slider(cntrl.panel,-1,0,0,10,(X,Y),wx.Size(width,height),style=wx.SL_HORIZONTAL)
++            
++        def setRange(self,fromValue,toValue):
++            self.controller.SetMin(fromValue)
++            self.controller.SetMax(toValue)
++
++        def getValue(self):
++            return self.controller.GetValue()
++
++''' WIDGETS: Calender '''
++class Cld(wx.calendar.CalendarCtrl):
++       controller=None
++       def __init__(self,X,Y,width,height,cntrl):
++            self.controller=wx.calendar.CalendarCtrl(cntrl.panel,-1,wx.DateTime_Now(),(X,Y),wx.Size(width,height),style=wx.calendar.CAL_SHOW_HOLIDAYS)
++           
++       def getValue(self):
++            return self.controller.GetDate()
++
++
++def Submit(self):
++    newps1 = NewPstb.getText();
++    newps2 = ReNewPstb.getText();
++    if(IsValidPswd(newps1,newps2)):
++        print (" Password Successfully Changed ! ");
++        OldPstb.setText("");
++        NewPstb.setText("");
++        ReNewPstb.setText("");
++    else:
++        print (" Retry by Entering new Password!  ");
++        OldPstb.setText("");
++        NewPstb.setText("");
++        ReNewPstb.setText("");
++ 
++
++def IsValidPswd(newps1, newps2):
++    if newps1 != newps2:
++       print(" Password Error !  Passwords donot match! ")
++       return False
++    
++    if(len(newps1)<=6):               # Check the length of the password
++       print(" Password Error ! Password Length should be more than 6. ")
++       return False    
++    
++    if(str(newps1).isalnum()):             #checks if password conatins only alpha or numeric fiels
++        
++        if(str(newps1).isalpha()):          # invalidates if  password contains only alphabets not a combination.
++            print(" Password Error ! Password cannot be only alphabet.Try combination! ")
++            return False   
++        
++        elif(str(newps1).isdigit()):	    #Invalidates if password contains only digits not a combination.
++            print(" Password Error ! Password cannot be only digit.Try combination! ")
++            return False
++        
++        else :			                     
++            print ("Password Successfully Changed. !");
++            return True
++    else:                                            # Invalidates if password have non-alphanumeric characters.
++       print (" Password Error ! Password should contain only alphabets and digits.");
++       return False
+Index: Assignment7/AnyGUI_Group13/main.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/main.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/main.py	(revision 0)
+@@ -0,0 +1,136 @@
++import PyQT4_API,sys,os
++import AnyGUI_API as todoList
++from PyQt4 import QtGui
++from PyQt4 import QtCore
++from functools import partial 
++
++global Account
++
++
++'''# function called when button is pushed
++def Submit(widgets,self):
++    newps1 = widgets[7].getText();
++    newps2 = widgets[8].getText();
++    if(IsValidPswd(newps1,newps2)):
++        print (" Password Successfully Changed ! ");
++        widgets[6].setText("");
++        widgets[7].setText("");
++        widgets[8].setText("");
++	#   QtGui.QMessageBox.information(widgets[0], 'Information',"Password Successfully Changed !", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
++    else:
++        print (" Retry by Entering new Password!  ");
++        widgets[6].setText("");
++        widgets[7].setText("");
++        widgets[8].setText("");
++	  # QtGui.QMessageBox.information(widgets[0], 'Information',"Retry by Entering new Password!", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
++    
++ 
++    # call IsValidPswd to check the passwords
++def IsValidPswd(newps1, newps2):
++    if newps1 != newps2:
++       print(" Password Error !  Passwords donot match! ")
++       #QtGui.QMessageBox.critical(widgets[0], 'Password Error',"Passwords donot match!", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
++       return False
++    if(len(newps1)<=6):               # Check the length of the password
++       print(" Password Error ! Password Length should be more than 6. ")
++	   #QtGui.QMessageBox.critical(widgets[0], 'Password Error',"Password Length should be more than 6.", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
++       return False    
++    if(str(newps1).isalnum()):             #checks if password conatins only alpha or numeric fiels
++        if(str(newps1).isalpha()):          # invalidates if  password contains only alphabets not a combination.
++            print(" Password Error ! Password cannot be only alphabet.Try combination! ")
++			#QtGui.QMessageBox.critical(widgets[0], 'Password Error',"Password cannot be only digit or alphabet.Try combination!", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
++            return False   
++        elif(str(newps1).isdigit()):	    #Invalidates if password contains only digits not a combination.
++            print(" Password Error ! Password cannot be only digit.Try combination! ")
++            return False
++        else :			                     
++            print ("Password Successfully Changed. !");
++            return True
++    else:                                            # Invalidates if password have non-alphanumeric characters.
++       print (" Password Error ! Password should contain only alphabets and digits.");
++       return False
++		
++def call_method(widgets):
++            print ("\n Your Entered Datas \n\n");
++            print ("****************************\n")
++            print ("Your Name :  "+ widgets[1].getText());
++            print ("Your Password :  "+ widgets[2].getText());
++            if(widgets[3].getChecked != -1):
++		    print ("Your Favourite Tool-Kit is :  "+widgets[4].getValue())
++   
++'''         	
++def exit_method():
++            sys.exit() 
++
++# method called on Clicking Login Button
++def login_method(widgets):
++
++            if(str(widgets[1].getText())==USR and str(widgets[2].getText())==PSWD):
++                widgets[0].Close()
++                Account= "Admin"
++                if(widgets[3].getChecked()==0):
++                   todoList.new_win(0,0,Account)
++                elif(widgets[3].getChecked()==1):
++                   todoList.new_win(0,1,Account)
++                elif(widgets[3].getChecked()==2):
++		   todoList.new_win(0,2,Account)
++                elif(widgets[3].getChecked()==3):
++                   todoList.new_win(0,3,Account)
++                else:
++                   print "Error With Radio-Buttons"
++            else:
++                widgets[4].setText("UserName and Password donot Match")
++
++#Method called on clicking GuestLogin Button
++def guest_log(widgets):
++            widgets[0].Close()
++            Account="Guest"
++	    if(widgets[3].getChecked()==0):
++                   todoList.new_win(0,0,Account)
++            elif(widgets[3].getChecked()==1):
++                   todoList.new_win(0,1,Account)
++            elif(widgets[3].getChecked()==2):
++		   todoList.new_win(0,1,Account)
++            elif(widgets[3].getChecked()==3):
++                   todoList.new_win(0,3,Account)
++            else:
++                   print "Error With Radio-Buttons"
++
++
++def aboutMe_method():
++            print("\nThis document is Created By Santosh Kumar P2009CS1016\n"); 
++			
++# Method to Create the Widgets in the first Window
++def CreateWidgets():
++
++		
++        WindowPanel = PyQT4_API.myWindow('AnyGUI Login Form' ,300,300,500,300)
++        userLbl=PyQT4_API.Label("User Name :",250,50,80,30,WindowPanel)
++        PswdLbl=PyQT4_API.Label("Password :",250,80,140,30,WindowPanel)
++        GuestLabel=PyQT4_API.Label("Not Registered User : ?",120,220,170,30,WindowPanel)
++        AdmLabel=PyQT4_API.Label("Administrator :",300,20,140,30,WindowPanel)
++        CrctPswdLbl=PyQT4_API.Label("",220,160,280,30,WindowPanel)
++        RadioLbl=PyQT4_API.Label("Choose ToolKit to Work With",20,15,160,30,WindowPanel)
++        usrtb=PyQT4_API.TextBox("",340,55,150,20,WindowPanel)
++        Pstb=PyQT4_API.PasswordBox("",340,85,150,20,WindowPanel)
++        rb1=PyQT4_API.RadioButton("PyQT4",20,50,100,20,WindowPanel)
++        rb1.setChecked(True)
++        rb2=PyQT4_API.RadioButton("Wx-Python",20,70,100,20,WindowPanel)
++        rb3=PyQT4_API.RadioButton("PyGTK",20,90,100,20,WindowPanel)
++        rb4=PyQT4_API.RadioButton("Tkinter",20,110,100,20,WindowPanel)
++        rbgrp=PyQT4_API.ButtonGroup(WindowPanel)
++        rlist=[rb1,rb2,rb3,rb4]
++        rbgrp.addButtons(rlist)
++        widgets=[WindowPanel,usrtb,Pstb,rbgrp,CrctPswdLbl]
++        guest_btn= PyQT4_API.Button("Guest Login",280,220,100,35,WindowPanel)
++        guest_btn.buttonListener(guest_log,widgets)
++        btn= PyQT4_API.Button("Login",320,120,100,35,WindowPanel)
++        btn.buttonListener(login_method,widgets)
++        WindowPanel.Show()
++       
++if __name__ == '__main__':
++       USR= "csl306"
++       PSWD="iitropar"
++       app = QtGui.QApplication(sys.argv)
++       CreateWidgets();
++       sys.exit(app.exec_())
+Index: Assignment7/AnyGUI_Group13/AnyGUI_API.py
+===================================================================
+--- Assignment7/AnyGUI_Group13/AnyGUI_API.py	(revision 0)
++++ Assignment7/AnyGUI_Group13/AnyGUI_API.py	(revision 0)
+@@ -0,0 +1,219 @@
++import sys
++def generate():
++    text_file = open("Output.txt", "w")
++    text_file.write("\n**********Begin_Description**********\n\n")    
++    text_file.write("Date and Time : %s\n\n"%(calender.getValue()))
++    
++    count=0
++
++    text_file.write("Important Events : \n")
++    if(ck1.getCheckState()):
++        text_file.write("Anniversary \n")
++        count=count+1
++    if(ck2.getCheckState()):
++        text_file.write("Birthday \n")
++        count=count+1
++    if(ck3.getCheckState()):
++        text_file.write("Meeting \n")
++        count=count+1
++        text_file.write("Travel \n")
++    if(ck4.getCheckState()):
++        count=count+1
++    if(ck5.getCheckState()):
++        text_file.write("Family \n")
++        count=count+1
++    if(ck6.getCheckState()):
++        text_file.write("Deadline \n")
++        count=count+1
++    if(ck7.getCheckState()):
++        text_file.write("Leisure \n")
++        count=count+1
++    if(count==0):
++        text_file.write("-None- \n")
++    
++    text_file.write("\nEvent rating/importance: %s"%sld1.getValue())
++    
++    text_file.write("\n\nEvent location: %s"%listBox.Selected())
++    
++    text_file.write("\n\nEvent time: %s"%timeBox.Selected())
++    
++    text_file.write("\n\nEvent Description:\n%s"%comments.getText())
++    
++    
++    text_file.write("\n\n**********End_Description**********")    
++   
++    text_file.close()
++    ok_label.setLabel("Output.txt generated")
++   
++def exit_mthd():
++            sys.exit() 
++
++
++
++
++
++
++
++
++
++
++
++
++
++def generate1(self):
++    text_file = open("Output.txt", "w")
++    text_file.write("\n**********Begin_Description**********\n\n")    
++    text_file.write("Date and Time : %s\n\n"%(calender.getValue()))
++    
++    count=0
++
++    text_file.write("Important Events : \n")
++    if(ck1.getCheckState()):
++        text_file.write("Anniversary \n")
++        count=count+1
++    if(ck2.getCheckState()):
++        text_file.write("Birthday \n")
++        count=count+1
++    if(ck3.getCheckState()):
++        text_file.write("Meeting \n")
++        count=count+1
++        text_file.write("Travel \n")
++    if(ck4.getCheckState()):
++        count=count+1
++    if(ck5.getCheckState()):
++        text_file.write("Family \n")
++        count=count+1
++    if(ck6.getCheckState()):
++        text_file.write("Deadline \n")
++        count=count+1
++    if(ck7.getCheckState()):
++        text_file.write("Leisure \n")
++        count=count+1
++    if(count==0):
++        text_file.write("-None- \n")
++    
++    text_file.write("\nEvent rating/importance: %s"%sld1.getValue())
++    
++    text_file.write("\n\nEvent location: %s"%listBox.Selected())
++    
++    text_file.write("\n\nEvent time: %s"%timeBox.Selected())
++    
++    text_file.write("\n\nEvent Description:\n%s"%comments.getText())
++    
++    
++    text_file.write("\n\n**********End_Description**********")    
++   
++    text_file.close()
++    ok_label.setLabel("Output.txt generated")
++   
++def exit_mthd1(self):
++            sys.exit() 
++
++
++
++
++
++
++
++
++
++
++def new_win(oldGUI,newGUI,Account):
++	
++
++	if (newGUI==1):
++	    import wxabhi as API
++	elif(newGUI==0): 
++	    import sys
++	    from PyQt4 import QtGui
++	    from PyQt4 import QtCore
++	    import os
++	    from functools import partial 
++	    import re
++	    import PyQT4_API as API
++	elif(newGUI==3):
++	    import sys
++	    import os
++	    from functools import partial 
++	    import re
++            import tkGUI_adi as API  
++            import tkMessageBox
++            import sys,os
++            import Tkinter as root
++            import Tkinter as tk
++            import time
++            import calendar
++
++            try:
++                import Tkinter
++                import tkFont
++            except ImportError: # py3k
++                import tkinter as Tkinter
++                import tkinter.font as tkFont
++            import ttk
++          
++     
++        global WindowPanel,hello_label,calender,comments,tag_label,ck1,ck2,ck3,ck4,ck5,ck6,ck7,imp_label,sld1,listBox,timeBox,ok_label;
++	WindowPanel = API.myWindow('To-Do List With AnyGUI' ,350,150,900,700)
++        welcome ="Welcome "+Account+ " !"
++	hello_label=API.Label(welcome,150,5,150,80,WindowPanel)
++        logged_label=API.Label("Guest Logged In.",650,5,150,80,WindowPanel)
++	calender=API.Cld(420,60,340,240,WindowPanel)  
++
++	comments=API.TextBox("\n    Enter event description here!!",40,60,340,240,WindowPanel)
++
++	tag_label=API.Label("Tag Event:",40,310,100,50,WindowPanel)
++
++	ck1=API.CheckBox("Anniversary ",40,350,150,30,WindowPanel)
++	ck1.setCheckState(0)
++
++	ck2=API.CheckBox("Birthday ",40,380,150,30,WindowPanel)
++	ck2.setCheckState(0)
++
++	ck3=API.CheckBox("Meeting ",40,410,150,30,WindowPanel)
++	ck3.setCheckState(0)
++
++
++	ck4=API.CheckBox("Travel ",40,440,150,30,WindowPanel)
++	ck4.setCheckState(0)
++            
++
++	ck5=API.CheckBox("Family ",40,470,150,30,WindowPanel)
++	ck5.setCheckState(0)
++
++	ck6=API.CheckBox("Deadline ",40,500,150,30,WindowPanel)
++	ck6.setCheckState(0)
++
++
++	ck7=API.CheckBox("Leisure ",40,530,150,30,WindowPanel)
++	ck7.setCheckState(0)
++      
++	imp_label=API.Label("Event importance:",510,320,200,50,WindowPanel)
++
++	sld1=API.Slider(520,380,270,40,WindowPanel)
++ 	sld1.setRange(0,10)
++        
++       
++	
++	myList=["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Chandigarh","Himachal Pradesh","Jammu and Kashmir","Srinagar and Jammu","Jharkhand","Karnataka","Kerala","Madya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Orissa","Punjab","Rajasthan","Sikkim","Tamil Nadu","Tripura","Uttaranchal","Uttar Pradesh","West Bengal"]
++	
++	listBox=API.ComboBox("Location",myList,200,360,180,50,WindowPanel)
++	
++        
++	timeList=["Morning","Afternoon","Evening","Night"]
++	timeBox=API.ComboBox("Time",timeList,200,460,180,50,WindowPanel)
++	
++        Gen=API.Button("Generate Text!",460,460,150,60,WindowPanel)
++        if(newGUI==3):
++            Gen.buttonListener(generate)
++        else:
++            Gen.buttonListener(generate1)
++        Extbtn=API.Button("Exit GUI",630,460,150,60,WindowPanel)
++        if(newGUI==3):
++            Extbtn.buttonListener(exit_mthd)
++        else:
++            Extbtn.buttonListener(exit_mthd1)
++
++	
++        ok_label=API.Label("",535,550,150,50,WindowPanel)
++	WindowPanel.show()                
+Index: Assignment7/AnyGUI_Group13/Output.txt
+===================================================================
+--- Assignment7/AnyGUI_Group13/Output.txt	(revision 0)
++++ Assignment7/AnyGUI_Group13/Output.txt	(revision 0)
+@@ -0,0 +1,18 @@
++
++**********Begin_Description**********
++
++Date and Time : Sun Nov 18 2012
++
++Important Events : 
++-None- 
++
++Event rating/importance: 0
++
++Event location: 
++
++Event time: 
++
++Event Description:
++dytdjudkdfk,escription here!!
++
++**********End_Description**********
+\ No newline at end of file
